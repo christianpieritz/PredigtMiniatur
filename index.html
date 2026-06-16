@@ -29,23 +29,24 @@
         /* Container orientiert sich dynamisch an der Displaygröße */
         .container {
             width: 100%;
-            max-width: 430px; /* Leicht erhöht für die größeren Schriften */
+            max-width: 430px; 
             background-color: #fdfbf7;
             padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 85vh; /* Erhöht für bessere vertikale Verteilung der größeren Blöcke */
-            justify-content: space-between;
+            /* Auf 'auto' gesetzt, damit sich das Layout bei kleinerem Abstand kompakt zusammenzieht */
+            min-height: auto; 
+            justify-content: flex-start;
         }
 
-        /* SMS-Glaube Überschrift - Skalierung erhöht */
+        /* SMS-Glaube Überschrift */
         .title {
             color: #4A124E;
-            font-size: clamp(24px, 7.5vw, 32px); /* Vorher: clamp(20px, 6vw, 26px) */
+            font-size: clamp(24px, 7.5vw, 32px); 
             font-weight: 700;
             letter-spacing: 0.25em;
-            margin-bottom: clamp(25px, 10vw, 45px);
+            margin-bottom: clamp(20px, 6vw, 35px); /* Abstand nach unten leicht reduziert */
             text-align: center;
             width: 100%;
         }
@@ -54,15 +55,14 @@
         .content-blocks {
             width: 100%;
             text-align: left;
-            margin-bottom: clamp(25px, 10vw, 45px);
+            margin-bottom: clamp(15px, 5vw, 25px); /* Abstand zum Footer/Thesenkreuz deutlich verringert */
         }
 
         .block {
-            /* Dynamische Schriftgröße deutlich angehoben */
-            font-size: clamp(18px, 5.5vw, 23px); /* Vorher: clamp(15px, 4.5vw, 19px) */
+            font-size: clamp(18px, 5.5vw, 23px); 
             font-weight: 500;
             line-height: 1.4;
-            margin-bottom: 2.5vh;
+            margin-bottom: 1.8vh; /* Abstand zwischen den Blöcken leicht kompakter */
         }
 
         .block-1 { color: #A42A04; }
@@ -76,13 +76,13 @@
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-            margin-top: auto;
-            flex-wrap: wrap; /* Verhindert Überlappung auf Extrem-Geräten */
+            margin-top: 20px; /* Ersetzt 'margin-top: auto', um den Abstand fix zu minimieren */
+            flex-wrap: wrap; 
         }
 
         .footer-left {
             flex: 1 1 130px; 
-            max-width: 150px; /* Leicht erhöht, damit das Kreuz zur Schrift passt */
+            max-width: 150px; 
             display: flex;
             align-items: center;
         }
@@ -102,22 +102,22 @@
             justify-content: center;
         }
 
-        /* Feiertage-Text vergrößert */
+        /* Feiertage-Text */
         .feiertage {
             color: #4A124E;
-            font-size: clamp(14px, 4.2vw, 17px); /* Vorher: clamp(12px, 3.8vw, 15px) */
+            font-size: clamp(14px, 4.2vw, 17px); 
             line-height: 1.4;
             margin-bottom: 10px;
             font-weight: 500;
         }
 
-        /* Farb-Wechsel im Wort A-m-e-n vergrößert */
+        /* Farb-Wechsel im Wort A-m-e-n */
         .amen {
-            font-size: clamp(18px, 5.5vw, 23px); /* Vorher: clamp(15px, 4.5vw, 19px) - jetzt analog zu den Textblöcken */
+            font-size: clamp(18px, 5.5vw, 23px); 
             font-style: italic;
             font-weight: 700;
             letter-spacing: 0.1em;
-            white-space: nowrap; /* Verhindert, dass das Wort zerbricht */
+            white-space: nowrap; 
         }
 
         .amen span.m { color: #A42A04; }
@@ -129,6 +129,7 @@
             .footer-section {
                 flex-direction: column;
                 text-align: center;
+                margin-top: 15px;
             }
             .footer-right {
                 text-align: center;
