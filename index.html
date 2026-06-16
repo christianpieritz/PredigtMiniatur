@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMS-Glaube</title>
-    <style>
-        /* Klassische Serifenschrift im Stile der Trajan/Vatican */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&display=swap');
 
+    <meta name="theme-color" content="#fdfbf7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#fdfbf7">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="SMS-Glaube">
+    <meta property="og:description" content="Da ist einer geboren: Das ist Gott. Der ist gestorben: Für dich. Er ist da: Für uns.">
+    <meta property="og:image" content="https://christianpieritz.github.io/predigtminiatur/cP.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&display=swap" rel="stylesheet">
+
+    <style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,7 +26,7 @@
         }
 
         body {
-            background-color: #fdfbf7; /* Papier-Farbton */
+            background-color: #fdfbf7; /* Dezenter, edler Papier-Farbton */
             font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
             text-transform: uppercase;
             letter-spacing: 0.05em;
@@ -31,17 +42,18 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Unsichtbarer Link über die gesamte Seite */
+        /* Unsichtbarer Link, der die gesamte Seite überspannt */
         .page-link {
             text-decoration: none;
             color: inherit;
             display: flex;
-            width: 100%;
-            flex: 1;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            flex: 1;
         }
 
+        /* Container orientiert sich dynamisch an der Displaygröße */
         .container {
             width: 100%;
             max-width: 430px; 
@@ -49,9 +61,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: flex-start;
             transition: transform 0.1s ease;
         }
 
+        /* SMS-Glaube Überschrift */
         .title {
             color: #4A124E;
             font-size: clamp(24px, 7.5vw, 32px); 
@@ -62,6 +76,7 @@
             width: 100%;
         }
 
+        /* Textblöcke */
         .content-blocks {
             width: 100%;
             text-align: left;
@@ -72,14 +87,15 @@
             font-size: clamp(18px, 5.5vw, 23px); 
             font-weight: 500;
             line-height: 1.4;
-            margin-bottom: 12px; /* vh durch festen Wert ersetzt für stabilere Mobil-Ansicht */
+            margin-bottom: 12px;
         }
 
-        /* Farbklassen */
-        .color-1, .block-1, .amen .m { color: #A42A04; }
-        .color-2, .block-2, .amen .e { color: #7A5C2E; }
-        .color-3, .block-3, .amen .n { color: #2F4F4F; }
+        /* Farb-Zuweisungen für Blöcke und Amen-Slices */
+        .block-1, .amen span.m { color: #A42A04; }
+        .block-2, .amen span.e { color: #7A5C2E; }
+        .block-3, .amen span.n { color: #2F4F4F; }
 
+        /* Moderner, hochflexibler Footer-Bereich */
         .footer-section {
             width: 100%;
             display: flex;
@@ -90,9 +106,10 @@
         }
 
         .footer-left {
-            flex: 0 0 140px; /* Redundante width entfernt */
+            flex: 0 0 140px;
         }
 
+        /* Dynamisch skalierendes Thesenkreuz */
         .siegel-kreuz-gross {
             width: 100%;
             height: auto;
@@ -107,6 +124,7 @@
             justify-content: center;
         }
 
+        /* Feiertage-Text */
         .feiertage {
             color: #4A124E;
             font-size: clamp(14px, 4.2vw, 17px); 
@@ -115,6 +133,7 @@
             font-weight: 500;
         }
 
+        /* Farb-Wechsel im Wort A-m-e-n */
         .amen {
             font-size: clamp(18px, 5.5vw, 23px); 
             font-style: italic;
@@ -123,8 +142,7 @@
             white-space: nowrap; 
         }
 
-        /* KLICK-EFFEKT VEREINFACHT */
-        /* Setzt bei Klick alle Texte im Link radikal auf Rot, ohne ellenlange Selektoren-Kette */
+        /* EFFEKT BEIM KLICKEN AUF DIE SEITE */
         .page-link:active .container * {
             color: #A42A04 !important;
         }
@@ -133,16 +151,47 @@
             transform: scale(0.99);
         }
 
-        .copyright {
-            font-size: 9px;
-            color: #7A5C2E;
-            opacity: 0.6;
-            margin-top: 15px;
-            text-align: center;
-            letter-spacing: 0.08em;
+        /* Bereich für den schmalen Teilen-Button */
+        .share-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            margin-bottom: 20px; /* Leicht erhöht für besseren Abschluss nach unten */
         }
 
-        /* Optimierung für kleine Displays (< 340px) */
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px; 
+            font-family: inherit;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px; 
+        }
+
+        /* Das eingebundene PNG-Logo im Button */
+        .share-btn-img {
+            height: 20px; 
+            width: auto;
+            display: block;
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        /* Optimierung für extrem schmale Bildschirme (unter 340px) */
         @media (max-width: 340px) {
             .footer-section {
                 flex-direction: column;
@@ -188,7 +237,9 @@
                 </div>
                 <div class="footer-right">
                     <div class="feiertage">
-                        Weihnachten<br>Ostern<br>Pfingsten
+                        Weihnachten<br>
+                        Ostern<br>
+                        Pfingsten
                     </div>
                     <div class="amen">A<span class="m">m</span><span class="e">e</span><span class="n">n</span></div>
                 </div>
@@ -196,7 +247,51 @@
         </div>
     </a>
 
-    <div class="copyright">&copy; Christian Pieritz</div>
+    <div class="share-container">
+        <button id="shareButton" class="share-btn">
+            <img src="cpright.png" alt="Logo" class="share-btn-img">
+            <span id="shareBtnText">Teilen</span>
+        </button>
+    </div>
+
+    <script>
+    document.getElementById('shareButton').addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation(); 
+        
+        const imageUrl = 'cP.jpg'; 
+        const textSpan = document.getElementById('shareBtnText');
+        const originalText = textSpan.innerText;
+
+        try {
+            textSpan.innerText = "Lädt...";
+
+            const response = await fetch(imageUrl);
+            const blob = await response.blob();
+            const file = new File([blob], 'SMS-Glaube.jpg', { type: blob.type });
+
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'SMS-Glaube',
+                    text: 'Eine kurze Form der Verkündigung.'
+                });
+            } else {
+                throw new Error('Datei-Teilen wird nicht unterstützt.');
+            }
+        } catch (err) {
+            console.error('Teilen nicht möglich:', err);
+            
+            const a = document.createElement('a');
+            a.href = imageUrl;
+            a.download = 'SMS-Glaube.jpg';
+            a.click();
+            alert('Direktes Teilen fehlgeschlagen. Das Bild wurde in deine Fotogalerie heruntergeladen, du kannst es jetzt manuell posten!');
+        } finally {
+            textSpan.innerText = originalText;
+        }
+    });
+    </script>
 
 </body>
 </html>
