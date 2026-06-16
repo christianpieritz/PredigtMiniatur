@@ -3,6 +3,6 @@ export const smsglaubeInhalt = {
     ueberschrift: "SMS·Glaube",
     initiale: "W",
     text1: "Das ist die erste Zeile",
-    bibelvers: "»Vers oder Lied",
+    bibelvers: "»Görlitz",
     text2: "Fließtext...."
 };
