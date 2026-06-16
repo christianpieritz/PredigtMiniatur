@@ -5,4 +5,5 @@ export const smsglaubeInhalt = {
     text1: "Das ist die erste Zeile",
     bibelvers: "»Görlitz",
     text2: "Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ... Der Kirchengemeinderat der Ev. Kirchengemeinde ..."
+    text3: "Amen"
 };
