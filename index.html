@@ -157,7 +157,7 @@
             display: flex;
             justify-content: center;
             margin-top: 25px;
-            margin-bottom: 20px; /* Leicht erhöht für besseren Abschluss nach unten */
+            margin-bottom: 20px;
         }
 
         .share-btn {
@@ -281,12 +281,7 @@
             }
         } catch (err) {
             console.error('Teilen nicht möglich:', err);
-            
-            const a = document.createElement('a');
-            a.href = imageUrl;
-            a.download = 'SMS-Glaube.jpg';
-            a.click();
-            alert('Direktes Teilen fehlgeschlagen. Das Bild wurde in deine Fotogalerie heruntergeladen, du kannst es jetzt manuell posten!');
+            // Fehler wird jetzt nur noch stillschweigend protokolliert (kein Fallback/Alert)
         } finally {
             textSpan.innerText = originalText;
         }
