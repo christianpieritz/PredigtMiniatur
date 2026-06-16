@@ -48,7 +48,6 @@
             -ms-hyphens: auto;
             hyphens: auto;
         }
-
         /* 3. Der schräge Bibelvers / Zitatblock */
         .quote-sub {
             font-weight: 400;
@@ -60,6 +59,17 @@
             -webkit-hyphens: auto;
             -ms-hyphens: auto;
             hyphens: auto;
+        }
+        .blue-right-block {
+            width: 100%;
+            text-align: right; /* Rechtsbündig */
+            font-weight: 700;   /* Dickgedruckt / Fett */
+            color: #006994;     /* Das entsprechende Blau */
+            font-size: clamp(17px, 4.5vw, 19px); /* Gleiche Größe wie die anderen Texte */
+            letter-spacing: 0.07em;
+            line-height: 1.6;
+            margin-top: 20px;   /* Abstand nach oben zum Text2 */
+            margin-bottom: 10px;
         }
 .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
         
@@ -115,7 +125,7 @@
 
 <script type="module">
         // HIER das "?v=..." anhängen:
-        import { smsglaubeInhalt } from './daten.js?v=2026-06-12';
+        import { smsglaubeInhalt } from './daten.js?v=2026-06-17';
 
         // 1. Daten in die HTML-Struktur einsetzen (Das "Befüllen")
         document.getElementById('outputUeberschrift').innerText = smsglaubeInhalt.ueberschrift;
