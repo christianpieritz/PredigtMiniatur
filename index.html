@@ -35,7 +35,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Auf 'auto' gesetzt, damit sich das Layout bei kleinerem Abstand kompakt zusammenzieht */
             min-height: auto; 
             justify-content: flex-start;
         }
@@ -46,7 +45,7 @@
             font-size: clamp(24px, 7.5vw, 32px); 
             font-weight: 700;
             letter-spacing: 0.25em;
-            margin-bottom: clamp(20px, 6vw, 35px); /* Abstand nach unten leicht reduziert */
+            margin-bottom: clamp(20px, 6vw, 35px);
             text-align: center;
             width: 100%;
         }
@@ -55,14 +54,14 @@
         .content-blocks {
             width: 100%;
             text-align: left;
-            margin-bottom: clamp(15px, 5vw, 25px); /* Abstand zum Footer/Thesenkreuz deutlich verringert */
+            margin-bottom: clamp(15px, 5vw, 25px);
         }
 
         .block {
             font-size: clamp(18px, 5.5vw, 23px); 
             font-weight: 500;
             line-height: 1.4;
-            margin-bottom: 1.8vh; /* Abstand zwischen den Blöcken leicht kompakter */
+            margin-bottom: 1.8vh;
         }
 
         .block-1 { color: #A42A04; }
@@ -76,7 +75,7 @@
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-            margin-top: 20px; /* Ersetzt 'margin-top: auto', um den Abstand fix zu minimieren */
+            margin-top: 20px;
             flex-wrap: wrap; 
         }
 
@@ -123,6 +122,43 @@
         .amen span.m { color: #A42A04; }
         .amen span.e { color: #7A5C2E; }
         .amen span.n { color: #2F4F4F; }
+
+        /* Dezente Trennlinie vor dem Download-Bereich */
+        .divider {
+            width: 60%;
+            height: 1px;
+            background-color: rgba(74, 18, 78, 0.2);
+            margin: 30px auto 15px auto;
+        }
+
+        /* Download-Bereich ganz unten */
+        .share-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .download-btn {
+            font-family: 'Cinzel', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: #7A5C2E;
+            text-decoration: none;
+            border: 1px solid #7A5C2E;
+            padding: 6px 16px;
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* Eleganter Hover-Effekt */
+        .download-btn:hover {
+            background-color: #7A5C2E;
+            color: #fdfbf7;
+        }
 
         /* Kleine Optimierung für extrem schmale Bildschirme (unter 340px) */
         @media (max-width: 340px) {
@@ -183,6 +219,12 @@
                 </div>
                 <div class="amen">A<span class="m">m</span><span class="e">e</span><span class="n">n</span></div>
             </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="share-section">
+            <a href="cP.jpg" download="cP.jpg" class="download-btn">Teilen</a>
         </div>
     </div>
 
