@@ -20,29 +20,64 @@
         body { background-color: #fdfbf7; font-family: 'Cinzel', serif; color: #2F2F2F; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px 15px; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; -webkit-font-smoothing: antialiased; }
         .page-wrapper { color: inherit; display: flex; justify-content: center; align-items: center; width: 100%; flex: 1; }
         .container { background-color: #fdfbf7; width: 100%; max-width: 440px; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+     /* 1. Die Überschrift (jetzt etwas größer und mächtiger) */
         .title {
             text-transform: uppercase;
             color: #A81229; 
-            /* Etwas kleiner, dafür monumentaler im Abstand */
-            font-size: clamp(18px, 5vw, 24px);
+            font-size: clamp(22px, 6vw, 28px); /* Erhöht von 18px-24px */
             font-weight: 700;
             margin-bottom: clamp(35px, 9vw, 50px);
             text-align: center;
             line-height: 1.4;
-            /* Extrem weiter Zeichenabstand für den Inschriften-Look */
             letter-spacing: 0.3em; 
             width: 100%;
-            /* Simuliert eine leichte Meißelkante im Stein */
             text-shadow: 1px 1px 0px rgba(0,0,0,0.15); 
         }
-        .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
-        .block { width: 100%; text-align: justify; text-justify: inter-word; font-weight: 400; font-size: clamp(14px, 3.8vw, 15px); letter-spacing: 0.08em; line-height: 1.75; margin-bottom: 20px; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+
+        /* 2. Der normale Fließtext (entspricht jetzt ca. Stufe 14 in Word) */
+        .block {
+            width: 100%;
+            text-align: justify;
+            text-justify: inter-word;
+            font-weight: 400;
+            font-size: clamp(17px, 4.5vw, 19px); /* Erhöht von 14px-15px */
+            letter-spacing: 0.08em; 
+            line-height: 1.7; /* Leicht verringert, damit es kompakt bleibt */
+            margin-bottom: 25px;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        /* 3. Der schräge Bibelvers / Zitatblock */
+        .quote-sub {
+            font-weight: 400;
+            font-size: clamp(17px, 4.5vw, 19px); /* Erhöht von 14px-16px */
+            letter-spacing: 0.07em;
+            line-height: 1.6;
+            color: #006994; 
+            font-style: italic; 
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+.content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
+        
+        /* AKTUALISIERT: Größere Schrift für den Fließtext */
+        .block { width: 100%; text-align: justify; text-justify: inter-word; font-weight: 400; font-size: clamp(17px, 4.5vw, 19px); letter-spacing: 0.08em; line-height: 1.7; margin-bottom: 25px; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+        
         .initial { font-family: 'Cinzel Decorative', serif; float: left; font-size: clamp(3.2em, 12vw, 3.8em); line-height: 0.7; margin-top: 0.08em; margin-right: 0.08em; color: #A81229; font-weight: 700; }
         .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
-        .quote-sub { font-weight: 400; font-size: clamp(14px, 4vw, 16px); letter-spacing: 0.07em; line-height: 1.6; color: #006994; font-style: italic; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+        
+        /* AKTUALISIERT: Größere Schrift für den Bibelvers */
+        .quote-sub { font-weight: 400; font-size: clamp(17px, 4.5vw, 19px); letter-spacing: 0.07em; line-height: 1.6; color: #006994; font-style: italic; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
+        
         .footer-wrapper { display: flex; flex-direction: column; align-items: center; width: 140px; margin-top: clamp(25px, 7vw, 40px); margin-bottom: 10px; }
         .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; }
+        
+        /* Behalten: Deine Anpassung auf 42% */
         .kreuz-img { width: 42%; height: auto; display: block; margin: 0 auto; }
+        
         .share-btn { width: 100%; background: transparent; border: 1px solid #A81229; color: #A81229; padding: 6px 0; font-family: inherit; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
         .share-btn-cp { color: #A81229; text-transform: none; opacity: 0.8; }
         .share-btn:active { background: #A81229; color: #fdfbf7; }
