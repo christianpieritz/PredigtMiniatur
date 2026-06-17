@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strand·Begleiter</title>
+
+    <meta name="theme-color" content="#fdfbf7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#fdfbf7">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Strand·Begleiter">
+    <meta property="og:description" content="Dein geistlicher Strand·Begleiter.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Die neue definierte blaue Farbe */
+            --blue-color: #2F5496; 
+            --gold-color: #7A5C2E;
+            --bg-color: #fdfbf7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color); 
+            font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70vh;
+        }
+
+        .title {
+            color: var(--gold-color);
+            width: 100%; 
+            max-width: 430px; 
+            font-size: clamp(20px, 6.8vw, 29px); 
+            font-weight: 700;
+            text-align: center;
+            text-align-last: center; 
+            margin-bottom: clamp(20px, 6vw, 35px);
+            white-space: nowrap; 
+        }
+
+        /* Bildbereich zentriert */
+        .image-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .main-content {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            text-align: center;
+            color: var(--gold-color);
+            font-size: clamp(16px, 4.5vw, 20px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-transform: none;
+            z-index: 2;
+        }
+
+        /* Neuer Style für den Hinweistext unter dem Bild */
+        .info-text {
+            color: var(--blue-color);
+            font-size: clamp(11px, 3.2vw, 13px);
+            font-weight: 500;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            text-transform: none; /* Deaktiviert Uppercase für bessere Lesbarkeit */
+            letter-spacing: 0.02em;
+            width: 85%;
+        }
+
+        /* Styling für die Buttons */
+        .button-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .btn-promenade {
+            display: inline-block;
+            width: 85%;
+            max-width: 280px;
+            text-align: center;
+            background-color: var(--gold-color);
+            color: var(--bg-color);
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            border-radius: 4px;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 2px 6px rgba(122, 92, 46, 0.2);
+        }
+
+        .btn-promenade:active {
+            transform: scale(0.98);
+            background-color: #5E4622;
+        }
+
+        .footer-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .footer-center {
+            width: 140px;
+        }
+
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+
+            <div class="title">Strand·Begleiter</div>
+
+            <div class="image-container">
+                <img src="Cover.jpg" alt="Cover" class="cover-image">
+
+                <div class="main-content">
+                   Haltestellen für deinen Glauben in den Kaiserbädern. 
+                </div>
+            </div>
+
+            <div class="info-text">
+                Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. <br> 
+                Nimm dir einen Moment für dich. 
+            </div>
+
+            <div class="button-container">
+                <a href="promenade.html" class="btn-promenade">Promenade</a>
+            </div>
+
+            <div class="button-container">
+                <a href="strandkorb.html" class="btn-promenade">Strandkorb</a>
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 393.16 250.43" class="siegel-kreuz-gross">
+                        </svg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
