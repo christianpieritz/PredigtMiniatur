@@ -6,7 +6,7 @@
     <title>SMS-Glaube</title>
 
     <meta name="theme-color" content="#fdfbf7">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#fdfbf7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -163,11 +163,16 @@
                     const file = new File([blob], 'SMS-Glaube.jpg', { type: 'image/jpeg' });
 
                     if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                        await navigator.share({
-                            files: [file],
-                            title: 'SMS-Glaube',
-                            text: 'KG Heringsdorf-Bansin'
-                        });
+                        // FEHLER KORRIGIERT: Try/Catch hinzugefügt, falls der User das Teilen-Menü abbricht
+                        try {
+                            await navigator.share({
+                                files: [file],
+                                title: 'SMS-Glaube',
+                                text: 'KG Heringsdorf-Bansin'
+                            });
+                        } catch (shareErr) {
+                            console.log('Teilen abgebrochen');
+                        }
                     } else {
                         alert('Das Teilen von Bildern wird von diesem Browser leider nicht unterstützt.');
                     }
