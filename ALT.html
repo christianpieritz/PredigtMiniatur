@@ -23,7 +23,7 @@
             color: #2F2F2F; 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; /* Erlaubt natürliches Scrollen nach unten */
+            justify-content: flex-start; 
             align-items: center; 
             min-height: 100vh; 
             padding: 30px 15px; 
@@ -54,7 +54,6 @@
             justify-content: flex-start; 
         }
         
-        /* Monumentale Überschrift (Römischer Inschriften-Stil) */
         .title {
             text-transform: uppercase;
             color: #A81229; 
@@ -70,7 +69,6 @@
 
         .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
         
-        /* Großer, harmonischer Fließtext */
         .block { 
             width: 100%; 
             text-align: justify; 
@@ -89,7 +87,6 @@
         
         .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
         
-        /* Großer, schräger Bibelvers */
         .quote-sub { 
             font-weight: 400; 
             font-size: clamp(17px, 4.5vw, 19px); 
@@ -102,7 +99,6 @@
             hyphens: auto; 
         }
         
-        /* Blau, fett und rechtsbündig für Text 3 */
         .blue-right-block {
             width: 100%;
             text-align: right; 
@@ -124,60 +120,37 @@
         .share-btn:active { background: #A81229; color: #fdfbf7; }
         .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
 
-        /* HACK: Das mobile Parallax-Fenster mit weich auslaufendem Verlauf */
         .devotional-image-wrapper {
             width: 100%;
             max-width: 440px; 
-            height: 280px; /* Bestimmt die Sichtfenster-Höhe auf dem Display */
-            margin-top: 40px; 
-            margin-bottom: 25px;
-            position: relative;
-            
-            background-image: url('xyz.jpg');
-            background-attachment: fixed; /* Erzeugt den gleitenden Tiefen-Effekt */
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            
-            border-radius: 8px;
-            overflow: hidden;
+            margin-top: 30px; 
+            margin-bottom: 20px;
+            padding: 0 15px;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Erzeugt den nahtlosen Übergang in deine Hintergrundfarbe */
-        .devotional-image-wrapper::before,
-        .devotional-image-wrapper::after {
-            content: '';
-            position: absolute;
-            left: 0;
+        .devotional-img {
             width: 100%;
-            height: 45px; 
-            z-index: 1;
-            pointer-events: none;
-        }
-        
-        .devotional-image-wrapper::before {
-            top: 0;
-            background: linear-gradient(to bottom, #fdfbf7, transparent);
+            height: auto;
+            display: block;
+            border-radius: 6px; 
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); 
         }
 
-        .devotional-image-wrapper::after {
-            bottom: 0;
-            background: linear-gradient(to top, #fdfbf7, transparent);
-        }
-
-        /* Eleganter Kalender-Button im Fußbereich */
+        /* NEU: Eleganter, unauffälliger Kalender-Button */
         .calendar-wrapper {
             width: 100%;
             max-width: 440px;
             padding: 0 15px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-align: center;
         }
 
         .calendar-btn {
             background: transparent;
             border: none;
-            color: #006994; 
+            color: #006994; /* In deinem edlen Blau */
             font-family: inherit;
             font-size: 12px;
             letter-spacing: 0.08em;
@@ -188,7 +161,7 @@
             transition: opacity 0.2s ease;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .calendar-btn:active { opacity: 1; }
@@ -222,17 +195,18 @@
             </div>
         </div>
 
-        <div class="devotional-image-wrapper"></div>
+        <div class="devotional-image-wrapper">
+            <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-img">
+        </div>
 
         <div class="calendar-wrapper">
             <button id="calendarButton" class="calendar-btn">
-                🗓️ Sonntag in den Kalender eintragen
+                🗓️ GD im Kalender
             </button>
         </div>
     </div>
 
     <script type="module">
-        // Version erhöht, um den Cache auf dem iPhone sofort zu leeren
         import { smsglaubeInhalt } from './daten.js?v=2026-06-18';
 
         // 1. Daten einsetzen
@@ -243,11 +217,12 @@
         document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
         document.getElementById('outputText3').innerText = smsglaubeInhalt.text3;
 
-        // 2. Kalender-Logik (baut die .ics Datei live zusammen)
+        // NEU: Kalender-Logik (baut die .ics Datei live auf dem iPhone zusammen)
         document.getElementById('calendarButton').addEventListener('click', () => {
-            const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); 
-            const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); 
+            const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); // z.B. 20260621
+            const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); // z.B. 1000
             
+            // Start- und Endzeit (wir nehmen pauschal 1 Stunde an)
             const startTime = `${dateStr}T${timeStr}00`;
             const endTime = `${dateStr}T${parseInt(timeStr) + 100}00`; 
 
@@ -272,7 +247,7 @@
             link.click();
         });
 
-        // 3. Deine Share-Funktion
+        // 2. Deine Share-Funktion
         document.getElementById('shareButton').addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation(); 
