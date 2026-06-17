@@ -23,7 +23,7 @@
             color: #2F2F2F; 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; /* Erlaubt natürliches Scrollen nach unten */
+            justify-content: flex-start; 
             align-items: center; 
             min-height: 100vh; 
             padding: 30px 15px; 
@@ -36,7 +36,7 @@
         .page-wrapper { 
             color: inherit; 
             display: flex; 
-            flex-direction: column; /* Stapelt Text-Container und Scroll-Bild sauber */
+            flex-direction: column; 
             justify-content: flex-start; 
             align-items: center; 
             width: 100%; 
@@ -54,7 +54,6 @@
             justify-content: flex-start; 
         }
         
-        /* Monumentale Überschrift (Römischer Inschriften-Stil) */
         .title {
             text-transform: uppercase;
             color: #A81229; 
@@ -70,7 +69,6 @@
 
         .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
         
-        /* Großer, harmonischer Fließtext */
         .block { 
             width: 100%; 
             text-align: justify; 
@@ -89,7 +87,6 @@
         
         .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
         
-        /* Großer, schräger Bibelvers */
         .quote-sub { 
             font-weight: 400; 
             font-size: clamp(17px, 4.5vw, 19px); 
@@ -102,7 +99,6 @@
             hyphens: auto; 
         }
         
-        /* Blau, fett und rechtsbündig für Text 3 */
         .blue-right-block {
             width: 100%;
             text-align: right; 
@@ -116,9 +112,7 @@
         }
         
         .footer-wrapper { display: flex; flex-direction: column; align-items: center; width: 140px; margin-top: clamp(25px, 7vw, 40px); margin-bottom: 10px; }
-        
         .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; }
-        
         .kreuz-img { width: 42%; height: auto; display: block; margin: 0 auto; }
         
         .share-btn { width: 100%; background: transparent; border: 1px solid #A81229; color: #A81229; padding: 6px 0; font-family: inherit; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
@@ -126,12 +120,11 @@
         .share-btn:active { background: #A81229; color: #fdfbf7; }
         .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
 
-        /* Stil für das andächtige Bild unter dem Container */
         .devotional-image-wrapper {
             width: 100%;
             max-width: 440px; 
             margin-top: 30px; 
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             padding: 0 15px;
             display: flex;
             justify-content: center;
@@ -144,13 +137,40 @@
             border-radius: 6px; 
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); 
         }
+
+        /* NEU: Eleganter, unauffälliger Kalender-Button */
+        .calendar-wrapper {
+            width: 100%;
+            max-width: 440px;
+            padding: 0 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .calendar-btn {
+            background: transparent;
+            border: none;
+            color: #006994; /* In deinem edlen Blau */
+            font-family: inherit;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0.75;
+            transition: opacity 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .calendar-btn:active { opacity: 1; }
     </style>
 </head>
 <body>
 
     <div class="page-wrapper">
         <div id="captureArea" class="container">
-            
             <div class="title" id="outputUeberschrift"></div>
 
             <div class="content-blocks">
@@ -162,7 +182,6 @@
                     <div class="quote-sub" id="outputBibelvers"></div>
                 </div>
                 <div class="block" id="outputText2"></div>
-                
                 <div class="blue-right-block" id="outputText3"></div>
             </div>
 
@@ -179,18 +198,54 @@
         <div class="devotional-image-wrapper">
             <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-img">
         </div>
+
+        <div class="calendar-wrapper">
+            <button id="calendarButton" class="calendar-btn">
+                🗓️ Sonntag in den Kalender eintragen
+            </button>
+        </div>
     </div>
 
     <script type="module">
         import { smsglaubeInhalt } from './daten.js?v=2026-06-18';
 
-        // 1. Daten in die HTML-Struktur einsetzen (Das "Befüllen")
+        // 1. Daten einsetzen
         document.getElementById('outputUeberschrift').innerText = smsglaubeInhalt.ueberschrift;
         document.getElementById('outputInitiale').innerText = smsglaubeInhalt.initiale;
         document.getElementById('outputText1').innerText = smsglaubeInhalt.text1;
         document.getElementById('outputBibelvers').innerText = smsglaubeInhalt.bibelvers;
         document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
         document.getElementById('outputText3').innerText = smsglaubeInhalt.text3;
+
+        // NEU: Kalender-Logik (baut die .ics Datei live auf dem iPhone zusammen)
+        document.getElementById('calendarButton').addEventListener('click', () => {
+            const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); // z.B. 20260621
+            const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); // z.B. 1000
+            
+            // Start- und Endzeit (wir nehmen pauschal 1 Stunde an)
+            const startTime = `${dateStr}T${timeStr}00`;
+            const endTime = `${dateStr}T${parseInt(timeStr) + 100}00`; 
+
+            const icsLines = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//SMSGlaube//KalenderButton//DE',
+                'BEGIN:VEVENT',
+                `SUMMARY:${smsglaubeInhalt.gdThema}`,
+                `DTSTART:${startTime}`,
+                `DTEND:${endTime}`,
+                `LOCATION:${smsglaubeInhalt.gdOrt}`,
+                'DESCRIPTION:Erinnerung aus deinem SMS-Glauben Impuls.',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ];
+
+            const blob = new Blob([icsLines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'gottesdienst.ics';
+            link.click();
+        });
 
         // 2. Deine Share-Funktion
         document.getElementById('shareButton').addEventListener('click', async (e) => {
