@@ -4,192 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Predigt·Miniatur</title>
-
-    <meta name="theme-color" content="#fdfbf7">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#fdfbf7">
-
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Predigt·Miniatur">
-    <meta property="og:description" content="Predigt·Miniatur">
-    <meta property="og:image" content="https://christianpieritz.github.io/predigtminiatur/KirchenTagebuch.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=400;500&display=swap" rel="stylesheet">
-
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             background-color: #fdfbf7;
-            font-family: 'Avenir Next', 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
-            text-transform: uppercase;
-            letter-spacing: 0.08em; /* Leicht erhöht für ein luftigeres Schriftbild */
+            font-family: sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 15px;
-            user-select: none;
-            -webkit-user-select: none;
-            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 20px; /* Verhindert, dass Text am Displayrand klebt */
+            color: #000000;
+            box-sizing: border-box;
         }
-
-        .page-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            flex: 1;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 430px;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Titel: font-weight auf 500 für ein feineres Erscheinungsbild */
         .title {
-            color: #000000;
-            font-size: clamp(20px, 6.5vw, 28px);
-            font-weight: 500;
+            font-size: 24px;
+            text-transform: uppercase; /* NUR der Titel bleibt in Großbuchstaben */
             letter-spacing: 0.18em;
-            margin-bottom: clamp(20px, 6vw, 35px);
+            margin-bottom: 20px;
             text-align: center;
+        }
+        .content {
+            max-width: 600px; /* Sorgt dafür, dass Zeilen auf Tablets/PCs nicht zu lang werden */
             width: 100%;
+            line-height: 1.6; /* Angenehmer Zeilenabstand für die Lesbarkeit */
+            font-size: 16px;
         }
-
-        .image-container {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .main-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
-        }
-
-        .share-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 15px;
-            margin-bottom: 20px;
-        }
-
-        /* Button: Dünnere Rahmenlinie (0.5px) und font-weight auf 500 gesetzt */
-        .share-btn {
-            background: transparent;
-            border: 0.5px solid #000000;
-            color: #000000;
-            padding: 8px 20px;
-            font-family: inherit;
-            font-size: 11px;
-            letter-spacing: 0.12em;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            font-weight: 500;
-            margin-bottom: 25px;
-        }
-
-        .share-btn-cp {
-            color: #000000;
-            text-transform: none;
-            font-weight: 400; /* Noch etwas feiner für das Copyright-Kürzel */
-        }
-
-        .share-btn:active {
-            background: #000000;
-            color: #fdfbf7;
-        }
-
-        .share-btn:active .share-btn-cp {
-            color: #fdfbf7;
-        }
-
-        .siegel-container {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .siegel-image {
-            max-width: 110px;
-            height: auto;
-            display: block;
+        .content p {
+            margin-bottom: 15px; /* Automatischer Abstand nach jedem Absatz */
         }
     </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <div class="container">
-            <div class="title">Predigt·Miniatur</div>
-
-            <div class="image-container">
-                <img src="KirchenTagebuch.jpg" alt="KirchenTagebuch" class="main-image">
-            </div>
-        </div>
-    </div>
-
-    <div class="share-container">
-        <button id="shareButton" class="share-btn">
-            <span id="shareBtnText">Teilen <span class="share-btn-cp">(©cP)</span></span>
-        </button>
+    <div class="title">Predigt·Miniatur</div>
+    
+    <!-- Hier packst du deine Texte rein -->
+    <div class="content">
+        <p>Hier entsteht eine Seite für <b>PredigtMiniaturen</b>, die als <em>Kirchentagebuch</em> durch das Kirchenjahr begleiten.</p>
         
-        <div class="siegel-container">
-            <img src="Siegel.png" alt="Siegel" class="siegel-image">
-        </div>
+<blockquote>
+Anfragen dazu an heringsdorf@pek.de
+</blockquote>        
+
+<p> Ostseebad Heringsdorf <br> 2026 </p>
+
+
     </div>
-
-    <script>
-    document.getElementById('shareButton').addEventListener('click', async (e) => {
-        e.preventDefault();
-        e.stopPropagation(); 
-        
-        const imageUrl = 'KirchenTagebuch.jpg'; 
-        const textSpan = document.getElementById('shareBtnText');
-        const originalHTML = textSpan.innerHTML;
-
-        try {
-            textSpan.innerText = "Lädt...";
-
-            const response = await fetch(imageUrl);
-            const blob = await response.blob();
-            const file = new File([blob], 'KirchenTagebuch.jpg', { type: blob.type });
-
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                await navigator.share({
-                    files: [file],
-                    title: 'Predigt.Miniatur',
-                    text: 'KG Heringsdorf-Bansin'
-                });
-            } else {
-                throw new Error('Datei-Teilen wird nicht unterstützt.');
-            }
-        } catch (err) {
-            console.error('Teilen nicht möglich:', err);
-        } finally {
-            textSpan.innerHTML = originalHTML;
-        }
-    });
-    </script>
 
 </body>
 </html>
