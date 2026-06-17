@@ -23,7 +23,7 @@
             color: #2F2F2F; 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; /* Erlaubt natürliches Scrollen nach unten */
+            justify-content: flex-start; 
             align-items: center; 
             min-height: 100vh; 
             padding: 30px 15px; 
@@ -54,7 +54,6 @@
             justify-content: flex-start; 
         }
         
-        /* Monumentale Überschrift (Römischer Inschriften-Stil) */
         .title {
             text-transform: uppercase;
             color: #A81229; 
@@ -70,7 +69,6 @@
 
         .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
         
-        /* Großer, harmonischer Fließtext */
         .block { 
             width: 100%; 
             text-align: justify; 
@@ -89,7 +87,6 @@
         
         .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
         
-        /* Großer, schräger Bibelvers */
         .quote-sub { 
             font-weight: 400; 
             font-size: clamp(17px, 4.5vw, 19px); 
@@ -102,7 +99,6 @@
             hyphens: auto; 
         }
         
-        /* Blau, fett und rechtsbündig für Text 3 */
         .blue-right-block {
             width: 100%;
             text-align: right; 
@@ -124,26 +120,34 @@
         .share-btn:active { background: #A81229; color: #fdfbf7; }
         .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
 
-        /* HACK: Das mobile Parallax-Fenster mit weich auslaufendem Verlauf */
+        /* IPHONE-FIX: Das Parallax-Sichtfenster */
         .devotional-image-wrapper {
             width: 100%;
             max-width: 440px; 
-            height: 280px; /* Bestimmt die Sichtfenster-Höhe auf dem Display */
+            height: 280px; 
             margin-top: 40px; 
             margin-bottom: 25px;
             position: relative;
-            
-            background-image: url('xyz.jpg');
-            background-attachment: fixed; /* Erzeugt den gleitenden Tiefen-Effekt */
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            
             border-radius: 8px;
             overflow: hidden;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
 
-        /* Erzeugt den nahtlosen Übergang in deine Hintergrundfarbe */
+        /* Das eigentliche Bild gleitet nun im Hintergrund stabil mit */
+        .devotional-img-parallax {
+            position: absolute;
+            top: -30px; 
+            left: 0;
+            width: 100%;
+            height: 120%; 
+            object-fit: cover;
+            z-index: 0;
+            position: -webkit-sticky;
+            position: sticky;
+        }
+
+        /* Die sanften Verläufe nach oben und unten */
         .devotional-image-wrapper::before,
         .devotional-image-wrapper::after {
             content: '';
@@ -151,7 +155,7 @@
             left: 0;
             width: 100%;
             height: 45px; 
-            z-index: 1;
+            z-index: 2;
             pointer-events: none;
         }
         
@@ -165,7 +169,6 @@
             background: linear-gradient(to top, #fdfbf7, transparent);
         }
 
-        /* Eleganter Kalender-Button im Fußbereich */
         .calendar-wrapper {
             width: 100%;
             max-width: 440px;
@@ -222,7 +225,10 @@
             </div>
         </div>
 
-        <div class="devotional-image-wrapper"></div>
+        <!-- IPHONE-FIX: Bildstruktur mit echtem Image-Tag -->
+        <div class="devotional-image-wrapper">
+            <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-img-parallax">
+        </div>
 
         <div class="calendar-wrapper">
             <button id="calendarButton" class="calendar-btn">
@@ -232,7 +238,6 @@
     </div>
 
     <script type="module">
-        // Version erhöht, um den Cache auf dem iPhone sofort zu leeren
         import { smsglaubeInhalt } from './daten.js?v=2026-06-18';
 
         // 1. Daten einsetzen
@@ -243,7 +248,7 @@
         document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
         document.getElementById('outputText3').innerText = smsglaubeInhalt.text3;
 
-        // 2. Kalender-Logik (baut die .ics Datei live zusammen)
+        // 2. Kalender-Logik
         document.getElementById('calendarButton').addEventListener('click', () => {
             const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); 
             const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); 
@@ -272,7 +277,7 @@
             link.click();
         });
 
-        // 3. Deine Share-Funktion
+        // 3. Share-Funktion
         document.getElementById('shareButton').addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation(); 
