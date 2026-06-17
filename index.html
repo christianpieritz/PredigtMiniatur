@@ -23,7 +23,7 @@
             color: #2F2F2F; 
             display: flex; 
             flex-direction: column; 
-            justify-content: flex-start; /* Geändert für flüssiges Scrollen auf Mobilgeräten */
+            justify-content: flex-start; 
             align-items: center; 
             min-height: 100vh; 
             padding: 20px 15px; 
@@ -36,7 +36,7 @@
         .page-wrapper { 
             color: inherit; 
             display: flex; 
-            flex-direction: column; /* Auf Spalte gesetzt, um Inhalt, Bild und Tools sauber zu stapeln */
+            flex-direction: column; 
             justify-content: flex-start; 
             align-items: center; 
             width: 100%; 
@@ -62,14 +62,14 @@
         .quote-sub { font-weight: 400; font-size: clamp(14px, 4vw, 16px); letter-spacing: 0.07em; line-height: 1.6; color: #006994; -webkit-hyphens: auto; -ms-hyphens: auto; hyphens: auto; }
         .footer-wrapper { display: flex; flex-direction: column; align-items: center; width: 140px; margin-top: clamp(25px, 7vw, 40px); margin-bottom: 10px; }
         .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; }
-        .kreuz-img { width: 40%; height: auto; display: block; margin: 0 auto; }
+        .kreuz-img { width: 30%; height: auto; display: block; margin: 0 auto; }
         
         .share-btn { width: 100%; background: transparent; border: 1px solid #A81229; color: #A81229; padding: 6px 0; font-family: inherit; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
         .share-btn-cp { color: #A81229; text-transform: none; opacity: 0.8; }
         .share-btn:active { background: #A81229; color: #fdfbf7; }
         .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
 
-        /* NEU: Robustes Parallax-Sichtfenster */
+        /* Sichtfenster */
         .devotional-image-wrapper {
             width: 100%;
             max-width: 440px; 
@@ -82,17 +82,17 @@
             background-color: #fdfbf7;
         }
 
-        /* Das Bild gleitet geschmeidig im Hintergrund des Fensters mit */
-        .devotional-img-parallax {
+        /* Optimierung: Umbenannt & object-position für perfekten Bildfokus hinzugefügt */
+        .devotional-window-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center 25%; /* Zentriert den oberen Mittelpunkt des Bildes (ideal für Landschaften/Motive) */
             display: block;
             pointer-events: none;
-            transition: transform 0.1s ease-out;
         }
 
-        /* Sanfte Verläufe (schmelzen das Bild oben und unten in den Hintergrund) */
+        /* Sanfte Verläufe nach oben und unten */
         .devotional-image-wrapper::before,
         .devotional-image-wrapper::after {
             content: '';
@@ -114,12 +114,12 @@
             background: linear-gradient(to top, #fdfbf7, transparent);
         }
 
-        /* Kalender-Button */
+        /* Kalender-Button im Fußbereich */
         .calendar-wrapper {
             width: 100%;
             max-width: 440px;
             padding: 0 15px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             text-align: center;
         }
 
@@ -140,50 +140,6 @@
             gap: 6px;
         }
         .calendar-btn:active { opacity: 1; }
-
-        /* Minimalistisches Feedback-Feld */
-        .feedback-wrapper {
-            width: 100%;
-            max-width: 440px;
-            padding: 0 15px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .feedback-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(168, 18, 41, 0.25); 
-            color: #2F2F2F;
-            font-family: inherit;
-            font-size: 14px;
-            padding: 10px 0;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.2s;
-            border-radius: 0;
-            -webkit-appearance: none;
-        }
-
-        .feedback-input:focus {
-            border-bottom-color: #A81229;
-        }
-
-        .feedback-btn {
-            background: transparent;
-            border: none;
-            color: #A81229;
-            font-family: inherit;
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-top: 12px;
-            opacity: 0.7;
-        }
-        .feedback-btn:active { opacity: 1; }
     </style>
 </head>
 <body>
@@ -215,24 +171,18 @@
         </div>
 
         <div class="devotional-image-wrapper">
-            <img src="xyz.jpg" alt="Andächtiges Bild" id="parallaxImg" class="devotional-img-parallax">
+            <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-window-img">
         </div>
 
         <div class="calendar-wrapper">
             <button id="calendarButton" class="calendar-btn">
-                🗓️ GD im Kalender eintragen
+                🗓️ Sonntag in den Kalender eintragen
             </button>
-        </div>
-
-        <div class="feedback-wrapper" id="feedbackForm">
-            <input type="text" id="feedbackText" class="feedback-input" placeholder="Ein anonymer Gedanke dazu..." maxlength="200">
-            <button id="sendFeedbackBtn" class="feedback-btn">Gedanken senden</button>
         </div>
     </div>
 
     <script type="module">
-        // Versionierung verhindert, dass das iPhone alte Daten cacht
-        import { smsglaubeInhalt } from './daten.js?v=2026-06-09';
+        import { smsglaubeInhalt } from './daten.js?v=2026-06-17';
 
         // 1. Daten in die HTML-Struktur einsetzen
         document.getElementById('outputUeberschrift').innerText = smsglaubeInhalt.ueberschrift;
@@ -241,26 +191,16 @@
         document.getElementById('outputBibelvers').innerText = smsglaubeInhalt.bibelvers;
         document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
 
-        // 2. Cross-Platform Parallax-Steuerung für iOS & Android
-        const img = document.getElementById('parallaxImg');
-        window.addEventListener('scroll', () => {
-            const speed = 0.2; 
-            const rect = img.parentElement.getBoundingClientRect();
-            const viewHeight = window.innerHeight;
-            
-            if (rect.top < viewHeight && rect.bottom > 0) {
-                const shift = (viewHeight - rect.top) * speed - 40;
-                img.style.transform = `translateY(${shift}px) scale(1.15)`; 
-            }
-        });
-
-        // 3. Kalender-Logik (.ics Datei live generieren)
+        // 2. Kalender-Logik (.ics Datei live generieren)
         document.getElementById('calendarButton').addEventListener('click', () => {
             const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); 
             const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); 
             
             const startTime = `${dateStr}T${timeStr}00`;
-            const endTime = `${dateStr}T${parseInt(timeStr) + 100}00`; 
+            
+            // Optimierung: Sicherere, mathematisch saubere Endzeit-Zuweisung für ICS-Dateien
+            const endHour = (parseInt(timeStr.substring(0, 2), 10) + 1).toString().padStart(2, '0');
+            const endTime = `${dateStr}T${endHour}${timeStr.substring(2, 4)}00`;
 
             const icsLines = [
                 'BEGIN:VCALENDAR',
@@ -281,36 +221,10 @@
             link.href = URL.createObjectURL(blob);
             link.download = 'gottesdienst.ics';
             link.click();
+            URL.revokeObjectURL(link.href); // Speicher-Optimierung
         });
 
-        // 4. Anonymes Feedback via Google Formular absenden
-        document.getElementById('sendFeedbackBtn').addEventListener('click', async () => {
-            const text = document.getElementById('feedbackText').value.trim();
-            if (!text) return;
-
-            const button = document.getElementById('sendFeedbackBtn');
-            button.innerText = "Wird gesendet...";
-
-            // HIER die IDs aus deinem Google-Formular einfügen
-            const formURL = "https://docs.google.com/forms/u/0/d/e/DEINE_FORMULAR_ID/formResponse";
-            const entryID = "entry.DEINE_EINGABE_FELD_ID";
-
-            const formData = new FormData();
-            formData.append(entryID, text);
-
-            try {
-                await fetch(formURL, { method: "POST", body: formData, mode: "no-cors" });
-                document.getElementById('feedbackForm').innerHTML = `
-                    <p style="font-size: 13px; color: #006994; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 10px;">
-                        🕊️ Danke für deinen Gedanken.
-                    </p>`;
-            } catch (err) {
-                console.error(err);
-                button.innerText = "Fehler. Erneut versuchen?";
-            }
-        });
-
-        // 5. Deine Share-Funktion (unverändert)
+        // 3. Deine Share-Funktion (unverändert)
         document.getElementById('shareButton').addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation(); 
