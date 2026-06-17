@@ -9,7 +9,7 @@ export const smsglaubeInhalt = {
 
     // NEU: Die Daten für den nächsten Gottesdienst
     gdTermin: "2026-06-21",      /* Datum im Format: JAHR-MONAT-TAG */
-    gdUhrzeit: "10:00",          /* Startzeit */
-    gdOrt: "Kirche Heringsdorf", /* Wo findet es statt? */
-    gdThema: "Gottesdienst mit Abendmahl" /* Titel des Kalendereintrags */
+    gdUhrzeit: "11:00", 
+    gdOrt: "Kirche Heringsdorf",  
+    gdThema: "Gottesdienst mit Abendmahl"  
 };
