@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS-Glaube</title>
+
+    <meta name="theme-color" content="#fdfbf7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght=700&family=Cinzel:wght=400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: #fdfbf7; 
+            font-family: 'Cinzel', serif; 
+            color: #2F2F2F; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px 15px; 
+            user-select: none; 
+            -webkit-user-select: none; 
+            -webkit-tap-highlight-color: transparent; 
+            -webkit-font-smoothing: antialiased; 
+        }
+        
+        .container { 
+            background-color: #fdfbf7; 
+            width: 100%; 
+            max-width: 440px; 
+            padding: 20px 15px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        
+        .title { text-transform: uppercase; color: #A81229; font-size: clamp(22px, 6vw, 28px); font-weight: 700; margin-bottom: clamp(30px, 8vw, 45px); text-align: center; line-height: 1.3; letter-spacing: 0.18em; width: 100%; }
+        .content-blocks { width: 100%; margin-bottom: clamp(15px, 4vw, 25px); }
+        .block { width: 100%; text-align: justify; text-justify: inter-word; font-weight: 400; font-size: clamp(14px, 3.8vw, 15px); letter-spacing: 0.08em; line-height: 1.75; margin-bottom: 20px; hyphens: auto; -webkit-hyphens: auto; }
+        .initial { font-family: 'Cinzel Decorative', serif; float: left; font-size: clamp(3.2em, 12vw, 3.8em); line-height: 0.7; margin-top: 0.08em; margin-right: 0.08em; color: #A81229; font-weight: 700; }
+        .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
+        .quote-sub { font-weight: 400; font-size: clamp(14px, 4vw, 16px); letter-spacing: 0.07em; line-height: 1.6; color: #006994; hyphens: auto; -webkit-hyphens: auto; }
+        .footer-wrapper { display: flex; flex-direction: column; align-items: center; width: 140px; margin-top: clamp(25px, 7vw, 40px); margin-bottom: 10px; }
+        
+        /* Interaktivität für das Kreuz hinzugefügt */
+        .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; cursor: pointer; }
+        .kreuz-img { width: 40%; height: auto; display: block; margin: 0 auto; }
+        
+        .share-btn { width: 100%; background: transparent; border: 1px solid #A81229; color: #A81229; padding: 6px 0; font-family: inherit; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
+        .share-btn-cp { color: #A81229; text-transform: none; opacity: 0.8; }
+        .share-btn:active { background: #A81229; color: #fdfbf7; }
+        .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
+
+        .devotional-image {
+            width: 100%;
+            max-width: 440px; 
+            height: auto; 
+            display: block;
+            margin: 30px 0; 
+        }
+    </style>
+</head>
+<body>
+
+    <div id="captureArea" class="container">
+        <div class="title" id="outputUeberschrift"></div>
+
+        <div class="content-blocks">
+            <div class="block">
+                <span class="initial" id="outputInitiale"></span>
+                <span id="outputText1"></span>
+            </div>
+            <div class="quote-block">
+                <div class="quote-sub" id="outputBibelvers"></div>
+            </div>
+            <div class="block" id="outputText2"></div>
+        </div>
+
+        <div class="footer-wrapper">
+            <div id="calendarTrigger" class="image-container">
+                <img src="Buntkreuz.png" alt="Buntkreuz" class="kreuz-img">
+            </div>
+            <button id="shareButton" class="share-btn">
+                <span id="shareBtnText">Teilen <span class="share-btn-cp">(©cP)</span></span>
+            </button>
+        </div>
+    </div>
+
+    <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-image">
+
+    <script type="module">
+        // Import mit Versionierung, um Cache-Probleme zu vermeiden
+        import { smsglaubeInhalt } from './daten.js?v=2026-06-19';
+
+        // 1. Daten einsetzen
+        document.getElementById('outputUeberschrift').innerText = smsglaubeInhalt.ueberschrift;
+        document.getElementById('outputInitiale').innerText = smsglaubeInhalt.initiale;
+        document.getElementById('outputText1').innerText = smsglaubeInhalt.text1;
+        document.getElementById('outputBibelvers').innerText = smsglaubeInhalt.bibelvers;
+        document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
+
+        // 2. Kalender-Logik (Jetzt auf dem Buntkreuz-Container)
+        document.getElementById('calendarTrigger').addEventListener('click', () => {
+            const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); 
+            const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); 
+            
+            const startTime = `${dateStr}T${timeStr}00`;
+            const endTime = `${dateStr}T${parseInt(timeStr) + 100}00`; 
+
+            const icsLines = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//SMSGlaube//KalenderButton//DE',
+                'BEGIN:VEVENT',
+                `SUMMARY:${smsglaubeInhalt.gdThema}`,
+                `DTSTART:${startTime}`,
+                `DTEND:${endTime}`,
+                `LOCATION:${smsglaubeInhalt.gdOrt}`,
+                'DESCRIPTION:Erinnerung aus deinem SMS-Glauben Impuls.',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ];
+
+            const blob = new Blob([icsLines.join('\r\n')], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'gottesdienst.ics';
+            link.click();
+        });
+
+        // 3. Share-Funktion
+        document.getElementById('shareButton').addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation(); 
+            
+            const button = document.getElementById('shareButton');
+            const textSpan = document.getElementById('shareBtnText');
+            const originalHTML = textSpan.innerHTML;
+
+            try {
+                textSpan.innerText = "Erstelle Bild...";
+                button.style.visibility = 'hidden';
+
+                const canvas = await html2canvas(document.getElementById('captureArea'), {
+                    useCORS: true,
+                    backgroundColor: '#fdfbf7',
+                    scale: 2
+                });
+
+                button.style.visibility = 'visible';
+                textSpan.innerText = "Teilen...";
+
+                canvas.toBlob(async (blob) => {
+                    if (!blob) throw new Error('Bildgenerierung fehlgeschlagen.');
+                    const file = new File([blob], 'SMS-Glaube.jpg', { type: 'image/jpeg' });
+
+                    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                        // FEHLER KORRIGIERT: Try/Catch hinzugefügt, falls der User das Teilen-Menü abbricht
+                        try {
+                            await navigator.share({
+                                files: [file],
+                                title: 'SMS-Glaube',
+                                text: 'KG Heringsdorf-Bansin'
+                            });
+                        } catch (shareErr) {
+                            console.log('Teilen abgebrochen');
+                        }
+                    } else {
+                        alert('Das Teilen von Bildern wird von diesem Browser leider nicht unterstützt.');
+                    }
+                    textSpan.innerHTML = originalHTML;
+                }, 'image/jpeg', 0.9);
+
+            } catch (err) {
+                console.error('Fehler:', err);
+                button.style.visibility = 'visible';
+                textSpan.innerHTML = originalHTML;
+            }
+        });
+    </script>
+
+</body>
+</html>
