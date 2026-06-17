@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promenade</title>
+
+    <meta name="theme-color" content="#fdfbf7">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#fdfbf7">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Promenade">
+    <meta property="og:description" content="Da ist einer geboren: Das ist Gott. Der ist gestorben: Für dich. Er ist da: Für uns.">
+    <meta property="og:image" content="https://christianpieritz.github.io/predigtminiatur/cP.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fdfbf7; /* Dezenter, edler Papier-Farbton */
+            font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Struktureller Wrapper für die Ausrichtung, kein Link mehr */
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Container orientiert sich dynamisch an der Displaygröße */
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Promenade Überschrift - bleibt in Kapitälchen */
+        .title {
+            color: #4A124E;
+            font-size: clamp(24px, 7.5vw, 32px);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            margin-bottom: clamp(20px, 6vw, 35px);
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        /* Textblöcke-Container */
+        .content-blocks {
+            width: 100%;
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+
+        /* Blauer Fließtext (Blocksatz mit automatischer Silbentrennung für responsive Screens) */
+        .text-blue {
+            color: #1A4B75; /* Ein edles, gut lesbares Blau */
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+            letter-spacing: 0.02em;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        /* Gelber Einschub (etwas kleiner als der Fließtext, normale Schreibweise) */
+        .highlight-yellow {
+            display: block;
+            color: #C29200; /* Ein sattes, dunkleres Gelb/Gold für gute Kontraste */
+            font-size: 0.9em; /* Skaliert den Text proportional etwas kleiner als den Fließtext */
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin: 18px 0;
+            padding-left: 12px;
+            border-left: 3px solid #C29200; /* Stilvolle optische Trennung */
+            text-align: left; /* Zitate/Einschübe wirken linksbündig oft harmonischer */
+        }
+
+        /* Moderner Footer-Bereich für Kreuz, Bild und die nachfolgenden Texte */
+        .footer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Richtet Elemente untereinander aus */
+            align-items: center;
+            margin-top: 10px; /* Reduzierter Abstand nach oben für einen bündigeren Anschluss zum Text */
+        }
+
+        .footer-center {
+            width: 140px; /* Behält die ursprüngliche proportionale Breite bei */
+        }
+
+        /* Dynamisch skalierendes Thesenkreuz */
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Styling für das Bild nach dem Kreuz */
+        .promenade-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 25px; /* Abstand zum Kreuz darüber */
+            border-radius: 4px;
+        }
+
+        /* Violetter Fließtext nach dem Bild (Blocksatz mit automatischer Silbentrennung) */
+        .text-purple {
+            color: #4A124E; /* Das edle Violett aus der Überschrift */
+            font-size: clamp(16px, 4.5vw, 19px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+            letter-spacing: 0.02em;
+            margin-top: 25px; /* Abstand nach oben zum Bild */
+            width: 100%;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        /* Roter Absatz in gleicher Größe, aber zentriert/linksbündig für den Gedichtcharakter */
+        .text-red-caps {
+            color: #A42A04; /* Das warme Rot */
+            font-size: clamp(16px, 4.5vw, 19px); /* Exakt dieselbe Größe wie .text-purple */
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center; /* Zentriert wirkt bei kurzen Gebets-/Gedichtzeilen oft edler */
+            letter-spacing: 0.05em; /* Etwas mehr Zeichenabstand für schönere Kapitälchen */
+            margin-top: 20px; /* Harmonischer Abstand zum violetten Text darüber */
+            width: 100%;
+            text-transform: uppercase; /* Erzwingt Kapitälchen / Großbuchstaben */
+        }
+
+        /* Bereich für den schmalen Button/Link und das nachfolgende Siegel */
+        .share-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Richtet Button und Siegel untereinander aus */
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px;
+            font-family: inherit;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase; /* Button bleibt zur optischen Abhebung in Kapitälchen */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none; /* Verhindert Unterstreichung beim Link */
+            margin-bottom: 25px; /* Abstand nach unten zum neuen Siegel-Bild */
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        /* Styling für das neue Siegel nach dem Button */
+        .siegel-img {
+            width: 100%;
+            max-width: 120px; /* Angemessene Größe für ein Siegel-Bild */
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="title">Promenade</div>
+
+            <div class="content-blocks">
+                <div class="text-blue">
+                    Flanieren kann man nicht im Stechschritt, lieben und glauben nicht im Akkord. 
+                    <span class="highlight-yellow">
+                        Als am Abend ein kühler Wind blies, ging Gott der Herr im Garten umher. (1. Mose 3,8)
+                    </span>
+                    Der Alltag peitscht uns an und wir rotieren wie ein Brummkreisel. Brummen so laut, dass Gott sein eigenes Wort nicht mehr versteht.
+                    Gott hingegen flaniert durch seine Schöpfung. Er ist ein Gott, der spazieren geht und vielleicht ist der Glaube an ihn wie Urlaub im Herzen. 
+                    Ein Gott der flaniert weiß, dass wir Promenaden und Urlaub im Herzen brauchen, damit wir sein Raunen und Staunen hören – und oft schlendert er wohl unbemerkt mit. 
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 393.16 250.43" class="siegel-kreuz-gross">
+                        <g transform="matrix(1.3333,0,0,-1.3333,0,250.43)">
+                            <g transform="scale(0.1)">
+                                <path style="fill:#A42A04;fill-rule:nonzero;" d="m 454.656,260.84 c -27.246,0 -54.09,2.93 -80.535,8.808 -26.445,5.883 -52.617,13.883 -78.547,24.043 -25.906,10.149 -51.812,22.047 -77.73,35.661 -25.91,13.636 -51.953,28.187 -78.137,43.679 l 20.027,41.668 c 16.036,-11.211 35.801,-22.828 59.309,-34.859 23.516,-12.012 48.621,-22.969 75.332,-32.852 26.73,-9.886 54.102,-18.156 82.148,-24.84 28.047,-6.687 54.903,-10.019 80.547,-10.019 41.668,0 87.227,9.082 136.641,27.242 49.426,18.168 98.176,43.008 146.262,74.527 l 21.629,-40.867 C 711.395,339.371 660.496,312.25 608.938,291.699 557.383,271.109 505.957,260.84 454.656,260.84" />
+                                <path style="fill:#7A5C2E;fill-rule:nonzero;" d="m 1044.86,525.43 c 27.25,0 54.1,-2.93 80.54,-8.809 26.45,-5.883 52.62,-13.891 78.55,-24.039 25.9,-10.141 51.81,-22.051 77.73,-35.672 25.91,-13.621 51.95,-28.172 78.13,-43.672 l -20.02,-41.679 c -16.04,11.222 -35.81,22.839 -59.31,34.863 -23.52,12.027 -48.62,22.976 -75.33,32.859 -26.73,9.899 -54.11,18.168 -82.15,24.84 -28.05,6.699 -54.9,10.02 -80.55,10.02 -41.67,0 -87.223,-9.071 -136.637,-27.25 -49.426,-18.153 -98.176,-43 -146.262,-74.532 l -21.629,40.879 c 50.203,33.653 101.101,60.782 152.664,81.344 51.555,20.566 102.977,30.848 154.274,30.848" />
+                                <path style="fill:#2F4F4F;fill-rule:nonzero;" d="m 2043.57,163.672 c -27.24,0 -54.09,2.93 -80.53,8.808 -26.45,5.879 -52.62,13.879 -78.55,24.04 -25.91,10.152 -51.81,22.05 -77.73,35.671 -25.91,13.629 -51.96,28.18 -78.14,43.68 l 20.03,41.668 c 16.04,-11.207 35.8,-22.84 59.31,-34.867 23.51,-12.012 48.62,-22.973 75.33,-32.852 26.73,-9.89 54.1,-18.16 82.15,-24.84 28.05,-6.691 54.9,-10.019 80.55,-10.019 41.67,0 87.22,9.078 136.64,27.238 49.42,18.172 98.17,43.012 146.26,74.539 l 21.63,-40.867 c -50.21,-33.672 -101.11,-60.781 -152.67,-81.34 -51.55,-20.59 -102.98,-30.859 -154.28,-30.859" />
+                                <path style="fill:#A42A04;fill-rule:nonzero;" d="m 2633.78,428.262 c 27.25,0 54.09,-2.934 80.54,-8.813 26.44,-5.879 52.61,-13.89 78.54,-24.039 25.91,-10.14 51.82,-22.039 77.74,-35.672 25.9,-13.617 51.95,-28.168 78.13,-43.668 l -20.03,-41.679 c -16.03,11.218 -35.8,22.839 -59.31,34.871 -23.51,12.019 -48.62,22.968 -75.33,32.847 -26.73,9.903 -54.1,18.172 -82.15,24.84 -28.04,6.699 -54.9,10.02 -80.54,10.02 -41.67,0 -87.23,-9.071 -136.64,-27.25 -49.43,-18.149 -98.18,-42.989 -146.26,-74.528 l -21.63,40.879 c 50.2,33.649 101.1,60.782 152.66,81.34 51.55,20.578 102.98,30.852 154.27,30.852" />
+                                <path style="fill:#7A5C2E;fill-rule:nonzero;" d="M 314.949,0 C 287.703,0 260.859,2.92969 234.414,8.80859 207.969,14.6914 181.797,22.6914 155.867,32.8516 129.961,42.9883 104.055,54.8906 78.1367,68.5117 52.2266,82.1406 26.1797,96.6914 0,112.191 l 20.0313,41.668 C 36.0664,142.641 55.832,131.02 79.3359,119 102.852,106.98 127.961,96.0195 154.668,86.1484 181.395,76.25 208.77,67.9805 236.816,61.3086 c 28.047,-6.6992 54.903,-10.0195 80.547,-10.0195 41.668,0 87.227,9.0703 136.641,27.2422 49.426,18.1601 98.176,42.9997 146.262,74.5277 l 21.629,-40.868 C 571.688,78.5313 520.793,51.3984 469.23,30.8516 417.676,10.2695 366.25,0 314.949,0" />
+                                <path style="fill:#2F4F4F;fill-rule:nonzero;" d="m 905.137,264.602 c 27.246,0 54.093,-2.93 80.539,-8.821 26.444,-5.871 52.614,-13.89 78.544,-24.043 25.91,-10.136 51.82,-22.039 77.73,-35.668 25.91,-13.609 51.96,-28.16 78.14,-43.672 l -20.03,-41.679 c -16.04,11.23 -35.8,22.851 -59.31,34.859 -23.51,12.031 -48.62,22.992 -75.33,32.871 -26.73,9.891 -54.1,18.172 -82.15,24.84 -28.043,6.691 -54.903,10.02 -80.543,10.02 -41.672,0 -87.231,-9.071 -136.641,-27.25 -51.305,-18.938 -100.055,-43.789 -148.141,-75.328 l -21.633,40.878 c 50.207,33.653 101.106,60.782 152.668,81.352 51.551,20.559 102.981,30.852 154.278,30.852" />
+                                <path style="fill:#481052;fill-rule:nonzero;" d="m 2347.61,1117.16 -702.62,42.14 c -1.05,0.04 -1.93,0.16 -2.79,0.51 -4.82,3.33 -8.95,7.44 -12.32,12.39 -0.14,0.89 -0.42,1.6 -0.42,2.51 l -42.17,702.69 c -10.37,0.45 -20.75,0.84 -31.27,0.84 -10.39,0 -20.81,-0.39 -31.13,-0.84 l -42.08,-702.66 c -0.08,-0.84 -0.24,-1.65 -0.45,-2.6 -3.29,-4.89 -7.44,-8.9 -12.21,-12.26 -0.85,-0.29 -1.85,-0.54 -2.83,-0.54 l -702.773,-42.27 c -0.422,-10.27 -0.832,-20.69 -0.832,-31.12 0,-10.56 0.41,-20.98 0.832,-31.35 l 702.673,-42.24 c 0.91,0 1.78,-0.18 2.8,-0.36 4.72,-3.49 8.92,-7.65 12.27,-12.395 0.18,-0.894 0.44,-1.785 0.44,-2.593 l 42.05,-914.4417 c 10.43,-0.3203 20.85,-0.789 31.24,-0.789 10.55,0 20.9,0.4687 31.27,0.789 l 42.17,914.4417 c 0.05,0.972 0.33,1.98 0.51,2.898 3.28,4.6 7.25,8.6 11.88,12.09 0.99,0.18 2.01,0.36 3.14,0.44 l 702.62,42.23 c 0.35,10.36 0.76,20.72 0.76,31.28 0,10.43 -0.41,20.85 -0.76,31.21" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+
+                <img src="promenadebild.jpg" alt="Promenade Bild" class="promenade-img">
+
+                <div class="text-purple">
+                    Du kannst jeden Tag als Geschenk aus Gottes Hand nehmen. Ein kleines Gebet hilft dabei: 
+                </div>
+                <div class="text-red-caps">
+                    Danke Gott für diesen Tag, <br>
+                    den ich gern erleben mag. <br>
+                    Behüte mich auf Schritt und Tritt, <br> 
+                    geht mit deinem Segen mit. <br>
+                    Amen
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="share-container">
+        <a href="index.html" class="share-btn">Zurück</a>
+        <img src="siegel.png" alt="Siegel" class="siegel-img">
+    </div>
+
+</body>
+</html>
