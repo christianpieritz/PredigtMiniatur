@@ -49,7 +49,9 @@
         .quote-block { width: 100%; margin: clamp(25px, 6vw, 35px) 0; padding-left: 16px; border-left: 2px solid #A81229; text-align: left; }
         .quote-sub { font-weight: 400; font-size: clamp(14px, 4vw, 16px); letter-spacing: 0.07em; line-height: 1.6; color: #006994; hyphens: auto; -webkit-hyphens: auto; }
         .footer-wrapper { display: flex; flex-direction: column; align-items: center; width: 140px; margin-top: clamp(25px, 7vw, 40px); margin-bottom: 10px; }
-        .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; }
+        
+        /* Interaktivität für das Kreuz hinzugefügt */
+        .image-container { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; cursor: pointer; }
         .kreuz-img { width: 40%; height: auto; display: block; margin: 0 auto; }
         
         .share-btn { width: 100%; background: transparent; border: 1px solid #A81229; color: #A81229; padding: 6px 0; font-family: inherit; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 4px; transition: all 0.2s ease; text-transform: uppercase; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
@@ -57,29 +59,13 @@
         .share-btn:active { background: #A81229; color: #fdfbf7; }
         .share-btn:active .share-btn-cp { color: #fdfbf7; opacity: 1; }
 
-        /* RADIKAL VEREINFACHT: Einfach nur das Bild, vollständig sichtbar */
         .devotional-image {
             width: 100%;
-            max-width: 440px; /* Gleiche Breite wie der Text-Container */
-            height: auto; /* Behält das natürliche Seitenverhältnis bei */
+            max-width: 440px; 
+            height: auto; 
             display: block;
-            margin: 30px 0; /* Abstand nach oben und unten */
+            margin: 30px 0; 
         }
-
-        .calendar-btn {
-            background: transparent;
-            border: none;
-            color: #006994; 
-            font-family: inherit;
-            font-size: 12px;
-            letter-spacing: 0.08em;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-weight: 700;
-            opacity: 0.75;
-            margin-bottom: 30px;
-        }
-        .calendar-btn:active { opacity: 1; }
     </style>
 </head>
 <body>
@@ -99,7 +85,7 @@
         </div>
 
         <div class="footer-wrapper">
-            <div class="image-container">
+            <div id="calendarTrigger" class="image-container">
                 <img src="Buntkreuz.png" alt="Buntkreuz" class="kreuz-img">
             </div>
             <button id="shareButton" class="share-btn">
@@ -109,10 +95,6 @@
     </div>
 
     <img src="xyz.jpg" alt="Andächtiges Bild" class="devotional-image">
-
-    <button id="calendarButton" class="calendar-btn">
-        🗓️ GD: Kalendereintrag. 
-    </button>
 
     <script type="module">
         // Import mit Versionierung, um Cache-Probleme zu vermeiden
@@ -125,8 +107,8 @@
         document.getElementById('outputBibelvers').innerText = smsglaubeInhalt.bibelvers;
         document.getElementById('outputText2').innerText = smsglaubeInhalt.text2;
 
-        // 2. Kalender-Logik (einfache Version)
-        document.getElementById('calendarButton').addEventListener('click', () => {
+        // 2. Kalender-Logik (Jetzt auf dem Buntkreuz-Container)
+        document.getElementById('calendarTrigger').addEventListener('click', () => {
             const dateStr = smsglaubeInhalt.gdTermin.replace(/-/g, ''); 
             const timeStr = smsglaubeInhalt.gdUhrzeit.replace(/:/g, ''); 
             
@@ -154,7 +136,7 @@
             link.click();
         });
 
-        // 3. Share-Funktion (unverändert)
+        // 3. Share-Funktion
         document.getElementById('shareButton').addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation(); 
