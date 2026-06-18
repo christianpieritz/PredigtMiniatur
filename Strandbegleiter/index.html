@@ -19,7 +19,6 @@
 
     <style>
         :root {
-            /* Die neue definierte blaue Farbe */
             --blue-color: #2F5496; 
             --gold-color: #7A5C2E;
             --bg-color: #fdfbf7;
@@ -79,7 +78,6 @@
             white-space: nowrap; 
         }
 
-        /* Bildbereich zentriert */
         .image-container {
             position: relative;
             width: 100%;
@@ -109,7 +107,6 @@
             z-index: 2;
         }
 
-        /* Neuer Style für den Hinweistext unter dem Bild */
         .info-text {
             color: var(--blue-color);
             font-size: clamp(13px, 3.2vw, 15px);
@@ -117,12 +114,11 @@
             text-align: center;
             margin-top: 10px;
             margin-bottom: 20px;
-            text-transform: none; /* Deaktiviert Uppercase für bessere Lesbarkeit */
+            text-transform: none; 
             letter-spacing: 0.02em;
             width: 85%;
         }
 
-        /* Styling für die Buttons */
         .button-container {
             width: 100%;
             display: flex;
@@ -161,12 +157,9 @@
             margin-top: 25px;
         }
 
-        .footer-center {
-            width: 140px;
-        }
-
-        .siegel-kreuz-gross {
+        .siegel-img {
             width: 100%;
+            max-width: 120px;
             height: auto;
             display: block;
         }
@@ -221,10 +214,7 @@
             </div>
 
             <div class="footer-section">
-                <div class="footer-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 393.16 250.43" class="siegel-kreuz-gross">
-                    </svg>
-                </div>
+                <img src="siegel.png" alt="Siegel" class="siegel-img">
             </div>
 
         </div>
