@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strandkorb</title>
-
+    <title>Strand·Begleiter</title>
+    
     <style>
         :root {
-            --blue-color: #2F5496; 
-            --gold-color: #7A5C2E;
-            --bg-color: #fdfbf7;
+            --blue: #2F5496; 
+            --gold: #7A5C2E;
+            --bg: #fdfbf7;
+            --dark: #2F4F4F;
         }
 
         * {
@@ -19,206 +20,132 @@
         }
 
         body {
-            background-color: var(--bg-color); 
-            font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
-            text-transform: uppercase;
+            background-color: var(--bg); 
+            color: var(--dark);
             letter-spacing: 0.05em;
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            padding: 20px 15px;
+            padding: 40px 15px;
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
-        .page-wrapper {
-            color: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            flex: 1;
-        }
-
         .container {
             width: 100%;
             max-width: 430px;
-            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            min-height: 70vh;
+            gap: 25px;
         }
 
-        .title {
-            color: var(--gold-color);
-            width: 100%; 
-            max-width: 430px; 
-            font-size: clamp(20px, 6.8vw, 29px); 
+        h1 {
+            color: var(--gold);
+            font-size: clamp(22px, 7vw, 30px); 
             font-weight: 700;
             text-align: center;
-            text-align-last: center; 
-            margin-bottom: clamp(20px, 6vw, 35px);
-            white-space: nowrap; 
+            text-transform: uppercase;
         }
 
-        .image-container {
+        .cover {
             position: relative;
             width: 100%;
-            display: flex;
-            justify-content: center;
         }
 
-        .cover-image {
+        .cover img {
             width: 100%;
             height: auto;
             display: block;
             border-radius: 4px;
         }
 
-        .main-content {
+        .cover p {
             position: absolute;
             top: 25%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 85%;
             text-align: center;
-            color: var(--gold-color);
+            color: var(--gold);
             font-size: clamp(16px, 4.5vw, 20px);
-            font-weight: 500;
-            line-height: 1.6;
-            text-transform: none;
-            z-index: 2;
+            font-weight: bold;
+            line-height: 1.4;
         }
 
-        .info-text {
-            color: var(--blue-color);
-            font-size: clamp(13px, 3.2vw, 15px);
-            font-weight: 500;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            text-transform: none; 
-            letter-spacing: 0.02em;
-            width: 85%;
-        }
-        
-        .text-purple {
-            color: #2F4F4F;
-            font-size: clamp(15px, 5vw, 17px);
-            font-weight: 500;
+        .intro {
+            font-size: clamp(15px, 4.5vw, 17px);
             line-height: 1.6;
-            letter-spacing: 0.02em;
-            text-align: justify;
-            width: 100%;
-            margin: 20px 0;
-            font-variant: normal !important;
-    	text-transform: none !important;
+            text-align: center;
         }
-        
-        .button-container {
+
+        nav {
             width: 100%;
             display: flex;
-            justify-content: center;
-            margin-top: 8px;
-            margin-bottom: 8px;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
         }
 
-        .btn-promenade {
-            display: inline-block;
+        nav a {
+            display: block;
             width: 85%;
             max-width: 280px;
             text-align: center;
-            background-color: var(--gold-color);
-            color: var(--bg-color);
+            background-color: var(--gold);
+            color: var(--bg);
             text-decoration: none;
             padding: 14px 20px;
             font-size: 16px;
             font-weight: 700;
             letter-spacing: 0.15em;
+            text-transform: uppercase;
             border-radius: 4px;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            box-shadow: 0 2px 6px rgba(122, 92, 46, 0.2);
+            transition: background 0.2s;
         }
 
-        .btn-promenade:active {
+        nav a:active {
             transform: scale(0.98);
             background-color: #5E4622;
         }
 
-        .footer-section {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 25px;
-        }
-
-        .siegel-img {
-            width: 100%;
+        footer img {
             max-width: 120px;
             height: auto;
-            display: block;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
-    <div class="page-wrapper">
-        <div class="container">
+    <div class="container">
 
-            <div class="title">Geistlicher<br>Strand·Begleiter</div>
+        <h1>Geistlicher<br>Strand·Begleiter</h1>
 
-            <div class="image-container">
-                <img src="Cover.jpg" alt="Cover" class="cover-image">
-
-                <div class="main-content">
-                    <b>Haltestellen für deinen Glauben in den Kaiserbädern.</b> 
-                </div>
-            </div>
-
-            <div class="text-purple">
-                Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. 
-                Nimm dir einen Moment für dich. 
-            </div>
-
-            <div class="button-container">
-                <a href="promenade.html" class="btn-promenade">Promenade</a>
-            </div>
-
-            <div class="button-container">
-                <a href="strandkorb.html" class="btn-promenade">Strandkorb</a>
-            </div>
-            
-            <div class="button-container">
-                <a href="strand.html" class="btn-promenade">Am Strand</a>
-            </div>
-            
-            <div class="button-container">
-                <a href="strandhafer.html" class="btn-promenade">An den Dünen</a>
-            </div>
-            
-            <div class="button-container">
-                <a href="rettungsturm.html" class="btn-promenade">Am Rettungsturm</a>
-            </div>
-            
-            <div class="button-container">
-                <a href="bernstein.html" class="btn-promenade">Bernstein</a>
-            </div>
-            
-            <div class="button-container">
-                <a href="seebruecke.html" class="btn-promenade">Seebrücke</a>
-            </div>
-
-            <div class="footer-section">
-                <img src="siegel.png" alt="Siegel" class="siegel-img">
-            </div>
-
+        <div class="cover">
+            <img src="Cover.jpg" alt="Cover">
+            <p>Haltestellen für deinen Glauben in den Kaiserbädern.</p>
         </div>
+
+        <p class="intro">
+            Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. Nimm dir einen Moment für dich.
+        </p>
+
+        <nav>
+            <a href="promenade.html">Promenade</a>
+            <a href="strandkorb.html">Strandkorb</a>
+            <a href="strand.html">Am Strand</a>
+            <a href="strandhafer.html">An den Dünen</a>
+            <a href="rettungsturm.html">Am Rettungsturm</a>
+            <a href="bernstein.html">Bernstein</a>
+            <a href="seebruecke.html">Seebrücke</a>
+        </nav>
+
+        <footer>
+            <img src="siegel.png" alt="Siegel">
+        </footer>
+
     </div>
 
 </body>
