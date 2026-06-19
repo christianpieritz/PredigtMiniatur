@@ -183,6 +183,16 @@
             background: #7A5C2E;
             color: #fdfbf7;
         }
+
+        /* Zusätzliches Styling für den roten Share-Button */
+        .link-btn-red {
+            background: #A42A04;
+            border: 1px solid #A42A04;
+        }
+        .link-btn-red:active {
+            background: transparent;
+            color: #A42A04;
+        }
     </style>
 </head>
 <body>
@@ -195,7 +205,13 @@
                <div class="text-red-caps" style="font-size: 150%;">
                     <b>Kaiser·Bäder·Kirche</b><br><br>
                 </div>
-                <div class="text-blue">
+                 <div class="text-blue" style="color: #A42A04;">
+                    Teilen Sie den StrandBegleiter:  
+                    <button id="shareTeaserBtn" class="link-btn link-btn-red">Teilen<span class="share-btn-cp">(©cP)</span></button>
+                </div>
+                
+                
+                <div class="text-blue" style="margin-top: 20px;">
                     Alle kirchlichen Veranstaltungen der Insel Usedom finden Sie auf: 
                     <a href="https://kirche-auf-usedom.de" target="_blank" class="link-btn">kirche-auf-usedom.de</a>
                 </div>
@@ -222,6 +238,37 @@
     <div class="share-container">
         <a href="index.html" class="share-btn">Zurück</a>
     </div>
+
+    <script>
+        document.getElementById('shareTeaserBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            e.stopPropagation(); 
+            
+            const imageUrl = 'teaser.jpg'; 
+            const button = e.currentTarget;
+            const originalHTML = button.innerHTML;
+
+            try {
+                button.innerText = "Lädt...";
+
+                const response = await fetch(imageUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'teaser.jpg', { type: blob.type });
+
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    await navigator.share({
+                        files: [file],
+                        title: 'Geistlicher Strandbegleiter',
+                        text: 'Geistlicher Strandbegleiter auf predigtminiatur.de'
+                    });
+                }
+            } catch (err) {
+                // Stilles Beenden bei Fehlern oder Abbruch
+            } finally {
+                button.innerHTML = originalHTML;
+            }
+        });
+    </script>
 
 </body>
 </html>
