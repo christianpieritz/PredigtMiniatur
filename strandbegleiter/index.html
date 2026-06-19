@@ -4,30 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geistlicher Strand·Begleiter</title>
-   
+  
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
-   
+  
     <style>
         :root {
-            --blue: #2F5496; 
+            --blue: #2F5496;
             --gold: #7A5C2E;
             --bg: #fdfbf7;
             --dark: #2F4F4F;
         }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
         body {
-            background-color: var(--bg); 
+            background-color: var(--bg);
             color: var(--dark);
-            font-family: 'Times New Roman', Times, serif; /* Fließtext standardmäßig antik/edel */
+            font-family: 'Times New Roman', Times, serif;
             letter-spacing: 0.02em;
             display: flex;
             justify-content: center;
@@ -38,16 +36,9 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
-        h1,
-        .cover p,
-        .title, 
-        .text-red-caps, 
-        .text-red-allcaps, 
-        .share-btn,
-        nav a { 
+        h1, .cover p, .title, .text-red-caps, .text-red-allcaps, .share-btn, nav a {
             font-family: 'Cinzel', serif;
-            letter-spacing: 0.1em; /* Cinzel wirkt mit etwas mehr Abstand noch edler */
+            letter-spacing: 0.1em;
         }
 
         .container {
@@ -61,12 +52,13 @@
 
         h1 {
             color: var(--gold);
-            font-size: clamp(22px, 7vw, 30px); 
+            font-size: clamp(22px, 7vw, 30px);
             font-weight: 700;
             text-align: center;
             text-transform: uppercase;
         }
 
+        /* Cover Bild mit Text-Overlay */
         .cover {
             position: relative;
             width: 100%;
@@ -90,6 +82,7 @@
             font-size: clamp(16px, 4.5vw, 20px);
             font-weight: bold;
             line-height: 1.4;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6); /* Bessere Lesbarkeit */
         }
 
         .intro {
@@ -98,42 +91,50 @@
             text-align: center;
         }
 
-        nav {
+        /* === RESPONSIVE 2-Spalten Navigation === */
+        .nav-grid {
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
+            margin: 10px 0;
         }
 
-        nav a {
+        .nav-item {
             display: block;
-            width: 85%;
-            max-width: 280px;
             text-align: center;
             background-color: var(--blue);
             color: var(--bg);
             text-decoration: none;
-            padding: 14px 20px;
-            font-size: 16px;
+            padding: 14px 12px;
+            font-size: 15.5px;
             font-weight: 700;
             text-transform: uppercase;
             border-radius: 4px;
             transition: background 0.2s;
+            line-height: 1.25;
         }
 
-        nav a:active {
+        .nav-item:active {
             transform: scale(0.98);
             background-color: #5E4622;
         }
 
-        /* Klasse für den kleineren Impressum-Button */
-        nav a.impressum {
-        background-color: var(--gold);
-            max-width: 180px;
-            padding: 8px 15px;
-            font-size: 12px;
-            margin-top: 10px;
+        .nav-item.impressum {
+            background-color: var(--gold);
+            grid-column: span 2;
+            padding: 12px 20px;
+            font-size: 15px;
+        }
+
+        @media (max-width: 360px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-item {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
         }
 
         footer img {
@@ -144,37 +145,33 @@
     </style>
 </head>
 <body>
-
     <div class="container">
-
         <h1>Geistlicher<br>Strand·Begleiter</h1>
-
+        
         <div class="cover">
             <img src="Cover.jpg" alt="Cover">
             <p>Haltestellen für deinen Glauben in den Kaiserbädern.</p>
         </div>
-
+        
         <p class="intro">
             Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. Nimm dir einen Moment für dich.
         </p>
 
-        <nav>
-            <a href="promenade.html">Promenade</a>
-            <a href="strandkorb.html">Strandkorb</a>
-            <a href="strand.html">Am Strand</a>
-            <a href="strandhafer.html">An den Dünen</a>
-            <a href="rettungsturm.html">Am Rettungsturm</a>
-            <a href="bernstein.html">Bernstein</a>
-            <a href="seebruecke.html">Seebrücke</a>
-            <a href="schiffe.html">Schiffe</a>
-            <a href="kontakt.html" class="impressum">Kontakt</a>
-        </nav>
+        <div class="nav-grid">
+            <a href="promenade.html" class="nav-item">Promenade</a>
+            <a href="strandkorb.html" class="nav-item">Strandkorb</a>
+            <a href="strand.html" class="nav-item">Am Strand</a>
+            <a href="strandhafer.html" class="nav-item">An den Dünen</a>
+            <a href="rettungsturm.html" class="nav-item">Rettungsturm</a>
+            <a href="bernstein.html" class="nav-item">Bernstein</a>
+            <a href="seebruecke.html" class="nav-item">Seebrücke</a>
+            <a href="schiffe.html" class="nav-item">Schiffe</a>
+            <a href="kontakt.html" class="nav-item impressum">Kontakt</a>
+        </div>
 
         <footer>
             <img src="siegel.png" alt="Siegel">
         </footer>
-
     </div>
-
 </body>
 </html>
