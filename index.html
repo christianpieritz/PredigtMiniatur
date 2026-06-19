@@ -22,6 +22,8 @@
             padding: 0;
         }
 
+
+
         body {
             background-color: var(--bg);
             color: var(--dark);
@@ -125,6 +127,12 @@
             font-size: 15px;
         }
 
+/* Neu hinzufügen: */
+.nav-item.handgepaeck {
+    background-color: var(--dark); /* Nutzt dein vorhandenes #2F4F4F */
+}
+
+
 /* Schaltet bei allen Displays, die schmaler als 440 Pixel sind (z. B. iPhone 16e), auf 1 Spalte um */
 @media (max-width: 440px) {
     .nav-grid {
@@ -166,7 +174,7 @@
             <a href="bernstein.html" class="nav-item">Bernstein</a>
             <a href="seebruecke.html" class="nav-item">Seebrücke</a>
             <a href="schiffe.html" class="nav-item">Schiffe</a>
-            <a href="glaubetogo.html" class="nav-item">Handgepäck</a>
+           <a href="glaubetogo.html" class="nav-item handgepaeck">Handgepäck</a>
             <a href="kontakt.html" class="nav-item impressum">Kontakt</a>
        </nav>
 
