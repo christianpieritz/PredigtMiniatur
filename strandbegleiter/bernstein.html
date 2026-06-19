@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strand·Begleiter</title>
+    <title>Bernstein · Glaube</title>
+
+    <!-- Google Fonts: Cinzel laden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -12,9 +17,11 @@
             padding: 0;
         }
 
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
         body {
             background-color: #fdfbf7;
-            letter-spacing: 0.05em;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.02em;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -24,6 +31,15 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .text-red-allcaps, 
+        .share-btn { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
         }
 
         .page-wrapper {
@@ -49,7 +65,6 @@
             color: #2F4F4F;
             font-size: clamp(24px, 7.5vw, 32px);
             font-weight: 700;
-            letter-spacing: 0.25em;
             margin-bottom: clamp(12px, 4vw, 20px);
             text-align: center;
             width: 100%;
@@ -58,14 +73,14 @@
     
         /* Styling für das manuell gesetzte Initiale-Span */
         .initiale {
-            color: #A42A04; /* Der bestehende Rot-Ton */
-            font-size: 3.2em; /* Größe der Initiale */
-            float: left; /* Lässt den nachfolgenden Text um das B fließen */
-            line-height: 0.85; /* Richtet den Buchstaben oben bündig aus */
+            color: #A42A04; 
+            font-size: 3.2em; 
+            float: left; 
+            line-height: 0.85; 
             margin-top: 4px;
             margin-right: 8px;
             font-weight: 700;
-            display: block; /* Wichtig, damit die Box-Maße für den Abstand stimmen */
+            display: block; 
         }
     
         .content-blocks {
@@ -122,7 +137,7 @@
 
         .footer-center {
             width: 140px;
-            margin: 20px 0; /* Zentrierter Abstand direkt auf dem Container */
+            margin: 20px 0; 
         }
 
         .siegel-kreuz-gross {
@@ -154,7 +169,6 @@
             font-weight: 500;
             line-height: 1.5;
             text-align: center;
-            letter-spacing: 0.05em;
             width: 100%;
             text-transform: uppercase;
             margin-bottom: 15px;
@@ -174,9 +188,7 @@
             border: 1px solid #7A5C2E;
             color: #7A5C2E;
             padding: 6px 14px;
-            font-family: inherit;
             font-size: 11px;
-            letter-spacing: 0.1em;
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.2s ease;
@@ -207,7 +219,7 @@
 
     <div class="page-wrapper">
         <div class="container">
-            <div class="title">Bernstein · <br>Glaube</div>
+            <h1 class="title">Bernstein · <br>Glaube</h1>
           
             <div class="content-blocks">
                 <div class="text-blue">
@@ -240,7 +252,7 @@
             <div class="footer-section">
                 <img src="bernsteinbild.jpg" alt="Bernstein Bild" class="promenade-img">
                 
-                <div class="title" style="margin-top: 25px; margin-bottom: 15px;">Im Sand</div>
+                <h2 class="title" style="margin-top: 25px; margin-bottom: 15px;">Im Sand</h2>
 
                 <div class="text-purple" style="text-align: justify; margin: 5px 0 20px 0;">
                     Für welche Schätze in deinem Leben bist du dankbar? Wurden sie angespült oder mit Mühe aus dem Leben gefischt?

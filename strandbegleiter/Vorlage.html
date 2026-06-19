@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strand·Begleiter</title>
+    <title>Promenade</title>
+
+    <!-- Google Fonts: Cinzel laden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -12,8 +17,10 @@
             padding: 0;
         }
 
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
         body {
             background-color: #fdfbf7;
+            font-family: 'Times New Roman', Times, serif;
             letter-spacing: 0.05em;
             display: flex;
             flex-direction: column;
@@ -24,6 +31,13 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .share-btn { 
+            font-family: 'Cinzel', serif;
         }
 
         .page-wrapper {
@@ -106,7 +120,7 @@
 
         .footer-center {
             width: 140px;
-            margin: 20px 0; /* Harmonischer, zentrierter Abstand für das Kreuz */
+            margin: 20px 0;
         }
 
         .siegel-kreuz-gross {
@@ -159,7 +173,6 @@
             border: 1px solid #7A5C2E;
             color: #7A5C2E;
             padding: 6px 14px;
-            font-family: inherit;
             font-size: 11px;
             letter-spacing: 0.1em;
             cursor: pointer;

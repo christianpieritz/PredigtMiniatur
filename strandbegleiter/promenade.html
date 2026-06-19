@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strand·Begleiter</title>
+    <title>Promenade</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -12,9 +16,11 @@
             padding: 0;
         }
 
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
         body {
             background-color: #fdfbf7; /* Dezenter, edler Papier-Farbton */
-            letter-spacing: 0.05em;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.02em;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -24,6 +30,15 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .text-red-allcaps, 
+        .share-btn { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
         }
 
         /* Struktureller Wrapper für die Ausrichtung */
@@ -52,7 +67,6 @@
             color: #2F4F4F;
             font-size: clamp(24px, 7.5vw, 32px);
             font-weight: 700;
-            letter-spacing: 0.25em;
             margin-bottom: clamp(20px, 6vw, 35px);
             text-align: center;
             width: 100%;
@@ -152,7 +166,6 @@
             font-weight: 500;
             line-height: 1.5;
             text-align: center; /* Zentriert wirkt bei kurzen Gebets-/Gedichtzeilen oft edler */
-            letter-spacing: 0.05em; /* Etwas mehr Zeichenabstand für schönere Kapitälchen */
             margin-top: 20px; /* Harmonischer Abstand zum violetten Text darüber */
             width: 100%;
             text-transform: uppercase; /* Erzwingt Kapitälchen / Großbuchstaben */
@@ -173,9 +186,7 @@
             border: 1px solid #7A5C2E;
             color: #7A5C2E;
             padding: 6px 14px;
-            font-family: inherit;
             font-size: 11px;
-            letter-spacing: 0.1em;
             cursor: pointer;
             border-radius: 4px;
             transition: all 0.2s ease;
@@ -232,10 +243,10 @@
                     Du kannst jeden Tag als Geschenk aus Gottes Hand nehmen. Ein kleines Gebet hilft dabei: 
                 </div>
                 <div class="text-red-caps">
-                    Danke Gott für diesen Tag, <br>
-                    den ich gern erleben mag. <br>
-                    Behüte mich auf Schritt und Tritt, <br>
-                    geht mit deinem Segen mit. <br>
+                    Danke Gott für diesen Tag, 
+                    den ich gern erleben mag. 
+                    Behüte mich auf Schritt und Tritt, 
+                    geht mit deinem Segen mit.
                     Amen
                 </div>
             </div>
