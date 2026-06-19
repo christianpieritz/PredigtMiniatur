@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strandhafer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
+        body {
+            background-color: #fdfbf7;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .dunen-heading,
+        .share-btn { 
+            font-family: 'Cinzel', serif;
+        }
+
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .title {
+            color: #2F4F4F;
+            font-size: clamp(24px, 7.5vw, 32px);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            margin-bottom: clamp(20px, 6vw, 35px);
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        
+        .initiale {
+            color: #A42A04;
+            font-size: 3.2em;
+            float: left;
+            line-height: 0.85;
+            margin-top: 4px;
+            margin-right: 8px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .content-blocks {
+            width: 100%;
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+
+        .text-blue {
+            color: #1A4B75;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+            letter-spacing: 0.02em;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            margin-bottom: 15px;
+        }
+
+        .footer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .footer-center {
+            width: 140px;
+            margin: 25px auto;
+        }
+
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .promenade-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            margin-top: 25px;
+        }
+
+        .text-purple {
+            color: #2F4F4F;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .text-link {
+            color: #1A4B75;
+            text-decoration: underline;
+            font-weight: 700;
+        }
+
+        .text-link:hover {
+            color: #A42A04;
+        }
+
+        .text-red-caps {
+            color: #A42A04;
+            font-size: clamp(16px, 4.5vw, 19px);
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center;
+            letter-spacing: 0.05em;
+            margin-top: 20px;
+            width: 100%;
+            text-transform: uppercase;
+        }
+
+        .dunen-heading {
+            display: block; 
+            font-weight: 700; 
+            color: #A42A04; 
+            font-size: 1.2em; 
+            text-align: center; 
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em;
+        }
+
+        .share-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            margin-bottom: 25px;
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        .siegel-img {
+            width: 100%;
+            max-width: 120px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <h1 class="title">Strandhafer</h1>
+
+            <div class="content-blocks">
+                <div class="text-blue">
+                    <span class="initiale">S</span>ei wie <i>Strandhafer</i> – halte, was dich hält. 
+                    Dünen werden vom Wind verweht, wenn nicht der Strandhafer sie hält. Aber zugleich wird der Strandhafer gehalten von der kargen Düne – so wachsen sogar Bäume auf Wüstensand.
+                </div>
+                    
+                <div class="footer-center">
+                    <img src="thesenkreuz.svg" alt="Thesenkreuz" class="siegel-kreuz-gross">
+                </div>
+
+                <div class="text-blue">
+                    Auf Hoffnung wurzeln und von Zuversicht im Leben getragen werden. 
+                    Freunde und Familie tragen und von ihnen getragen werden. 
+                    Seinen Glauben festhalten und zugleich vom Glauben gehalten werden.
+                </div>
+                
+                <div class="text-red-caps">
+                    Sei wie Strandhafer: <br>Halte, was dich hält, <br>damit das Leben nicht verweht.
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <img src="strandhaferbild.jpg" alt="Strandhafer Bild" class="promenade-img">
+
+                <div class="text-purple">
+                    <span class="dunen-heading">An den Dünen</span>
+                    <span style="display: block; text-align: center; font-style: italic; margin-bottom: 15px;">Was Gott nicht hält, das hält nicht.</span>
+                    Manchmal muss man sich an alten und erprobten Worten festhalten. <a href="https://www.die-bibel.de/bibeln/online-bibeln/lesen/LU17/PSA.23/Psalm-23" target="_blank" rel="noopener" class="text-link">Hier findest du Psalm 23</a> („Der HERR ist mein Hirte“).
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="share-container">
+        <a href="index.html" class="share-btn">Zurück</a>
+        <img src="siegel.png" alt="Siegel" class="siegel-img">
+    </div>
+
+</body>
+</html>

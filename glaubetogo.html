@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handgepäck·Glaube</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fdfbf7; /* Dezenter, edler Papier-Farbton */
+            font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+/* Styling für das Siegel nach dem Button */
+        .siegel-img {
+            width: 100%;
+            max-width: 120px; /* Erhöht von 80px auf 120px wie in Promenade */
+            height: auto;
+            display: block;
+        }
+        /* Struktureller Wrapper für die Ausrichtung, kein Link mehr */
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Container orientiert sich dynamisch an der Displaygröße */
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* SMS-Glaube Überschrift */
+        .title {
+            color: #4A124E;
+            font-size: clamp(24px, 7.5vw, 32px);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            margin-bottom: clamp(20px, 6vw, 35px);
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Textblöcke */
+        .content-blocks {
+            width: 100%;
+            text-align: left;
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+
+        .block {
+            font-size: clamp(18px, 5.5vw, 23px);
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        /* Farb-Zuweisungen für Blöcke und Amen-Slices */
+        .amen span.a { color: #4A124E; } /* Das definierte Violett für das 'A' */
+        .block-1, .amen span.m { color: #A42A04; }
+        .block-2, .amen span.e { color: #7A5C2E; }
+        .block-3, .amen span.n { color: #2F4F4F; }
+
+        /* Moderner, hochflexibler Footer-Bereich */
+        .footer-section {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-left {
+            flex: 0 0 140px;
+        }
+
+        /* Dynamisch skalierendes Thesenkreuz */
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .footer-right {
+            flex: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Feiertage-Text */
+        .feiertage {
+            color: #4A124E;
+            font-size: clamp(14px, 4.2vw, 17px);
+            line-height: 1.4;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Farb-Wechsel im Wort A-m-e-n */
+        .amen {
+            font-size: clamp(18px, 5.5vw, 23px);
+            font-style: italic;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+        }
+
+        /* Bereich für den schmalen Teilen-Button */
+        .share-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px;
+            font-family: inherit;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none; /* Verhindert Unterstreichung beim Link */
+        }
+
+        /* Färbt den Urheberrechts-Zusatz im Button */
+        .share-btn-cp {
+            color: #2F4F4F;
+            text-transform: none; /* Behält Kleinbuchstaben für das 'cP' bei */
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        /* Macht den Urheberrechts-Text beim aktiven Button-Klick lesbar */
+        .share-btn:active .share-btn-cp {
+            color: #fdfbf7;
+        }
+
+        /* Optimierung für extrem schmale Bildschirme (unter 340px) */
+        @media (max-width: 340px) {
+            .footer-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            .footer-left {
+                flex: 0 0 100px;
+            }
+            .footer-right {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="title">Handgepäck · Glaube</div>
+
+            <div class="content-blocks">
+                <div class="block block-1">Da ist einer geboren:<br>Das ist Gott.</div>
+                <div class="block block-2">Der ist gestorben:<br>Für dich.</div>
+                <div class="block block-3">Er ist da:<br>Für uns.</div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-left">
+                    <img src="thesenkreuz.svg" alt="Thesenkreuz" class="siegel-kreuz-gross">
+                </div>
+                <div class="footer-right">
+                    <div class="feiertage">
+                        Weihnachten<br>
+                        Ostern<br>
+                        Pfingsten
+                    </div>
+                    <div class="amen"><span class="a">A</span><span class="m">m</span><span class="e">e</span><span class="n">n</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="share-container" style="display: flex; flex-direction: column; align-items: center; gap: 15px;">
+        <a href="index.html" class="share-btn">Zurück</a>
+        <img src="siegel.png" alt="Siegel" class="siegel-img">
+    </div>
+</body>
+</html>

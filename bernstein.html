@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bernstein · Glaube</title>
+
+    <!-- Google Fonts: Cinzel laden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
+        body {
+            background-color: #fdfbf7;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.02em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .text-red-allcaps, 
+        .share-btn { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
+        }
+
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .title {
+            color: #2F4F4F;
+            font-size: clamp(24px, 7.5vw, 32px);
+            font-weight: 700;
+            margin-bottom: clamp(12px, 4vw, 20px);
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+        }
+    
+        /* Styling für das manuell gesetzte Initiale-Span */
+        .initiale {
+            color: #A42A04; 
+            font-size: 3.2em; 
+            float: left; 
+            line-height: 0.85; 
+            margin-top: 4px;
+            margin-right: 8px;
+            font-weight: 700;
+            display: block; 
+        }
+    
+        .content-blocks {
+            width: 100%;
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+
+        .text-blue {
+            color: #1A4B75;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+            letter-spacing: 0.02em;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            margin-bottom: 15px;
+        }
+
+        .text-center-blue {
+            color: #1A4B75;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .text-purple {
+            color: #2F4F4F;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .highlight-yellow {
+            display: block;
+            color: #C29200;
+            font-size: 0.9em;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin: 18px 0;
+            padding-left: 12px;
+            border-left: 3px solid #C29200;
+            text-align: left;
+        }
+
+
+        .footer-center {
+            width: 140px; /* Behält die ursprüngliche proportionale Breite bei */
+            margin: 25px auto;
+        }
+ 
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .footer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .promenade-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .text-red-caps {
+            color: #A42A04;
+            font-size: clamp(16px, 4.5vw, 19px);
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .share-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px;
+            font-size: 11px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none;
+            margin-bottom: 25px;
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        .siegel-img {
+            width: 100%;
+            max-width: 120px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <h1 class="title">Bernstein · <br>Glaube</h1>
+          
+            <div class="content-blocks">
+                <div class="text-blue">
+                    <span class="initiale">B</span>ernstein will gefunden werden – wie Gott. · 
+                    Bernstein gibt’s im Sturm, wie den Glauben. · 
+                    Bernstein schwimmt, wie der Glaube trägt. · 
+                    Bernstein bewahrt, was eingeschlossen harrt. ·
+                    Bernstein brennt, wie der Pfingstgeist. · 
+                    Bernstein leuchtet bei UV-Licht, wie die Hoffnung im Dunkeln.
+                </div>
+                
+                <div class="text-blue" style="text-align: justify; margin-top: 20px; color: #C29200;">
+                    Wo wohnt dein Glaube? ·   
+                    Wo trug die Hoffnung dich übers Wasser? · 
+                    Wo wurdest du behütet und bewahrt? · 
+                    Wo gibst du dich ganz für das Gute hin? · 
+                    Wo leuchtet dein Leben?
+                </div>
+
+                <div class="text-red-caps" style="margin-bottom: 5px;">
+                    Gesegnetes Suchen und Finden.
+                </div>
+
+                <div class="footer-center">
+                    <img src="thesenkreuz.svg" alt="Thesenkreuz" class="siegel-kreuz-gross">
+                </div>
+
+            </div>
+
+            <div class="footer-section">
+                <img src="bernsteinbild.jpg" alt="Bernstein Bild" class="promenade-img">
+                
+                <h2 class="title" style="margin-top: 25px; margin-bottom: 15px;">Im Sand</h2>
+
+                <div class="text-purple" style="text-align: justify; margin: 5px 0 20px 0;">
+                    Für welche Schätze in deinem Leben bist du dankbar? Wurden sie angespült oder mit Mühe aus dem Leben gefischt?
+                </div>
+
+                <div class="text-purple" style="text-align: left; width: 100%; margin: 0 0 25px 0; padding-left: 20px;">
+                    ● ...<br><br>
+                    ● ...<br><br>
+                    ● ...
+                </div>
+
+                <div class="text-red-caps" style="margin-bottom: 5px;">
+                    Du bist auch ein Schatz.
+                </div>
+                
+                <div class="text-red-caps" style="margin-bottom: 5px; ">
+                    Für jemanden.
+                </div>
+
+                <div class="text-red-caps" style="margin-bottom: 15px;">
+                    Für Gott.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="share-container">
+        <a href="index.html" class="share-btn">Zurück</a>
+        <img src="siegel.png" alt="Siegel" class="siegel-img">
+    </div>
+
+</body>
+</html>

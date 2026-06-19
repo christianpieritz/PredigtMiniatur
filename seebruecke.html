@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seebrücke</title>
+
+    <!-- Google Fonts: Cinzel laden -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
+        body {
+            background-color: #fdfbf7; /* Dezenter, edler Papier-Farbton */
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 15px;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        .title, 
+        .text-red-caps, 
+        .text-red-allcaps, 
+        .share-btn { 
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Struktureller Wrapper für die Ausrichtung, kein Link mehr */
+        .page-wrapper {
+            color: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* Container orientiert sich dynamisch an der Displaygröße */
+        .container {
+            width: 100%;
+            max-width: 430px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Promenade Überschrift - bleibt in Kapitälchen */
+        .title {
+            color: #2F4F4F;
+            font-size: clamp(24px, 7.5vw, 32px);
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            margin-bottom: clamp(20px, 6vw, 35px);
+            text-align: center;
+            width: 100%;
+            text-transform: uppercase;
+        }
+        
+        /* Styling für das manuell gesetzte Initiale-Span */
+        .initiale {
+            color: #A42A04; /* Der bestehende Rot-Ton */
+            font-size: 3.2em; /* Größe der Initiale */
+            float: left; /* Lässt den nachfolgenden Text um das F fließen */
+            line-height: 0.85; /* Richtet den Buchstaben oben bündig aus */
+            margin-top: 4px;
+            margin-right: 8px; /* Abstand zum Text */
+            font-weight: 700;
+            display: block; /* Wichtig, damit die Box-Maße für den Abstand stimmen */
+        }
+
+        /* Textblöcke-Container */
+        .content-blocks {
+            width: 100%;
+            margin-bottom: clamp(15px, 5vw, 25px);
+        }
+
+        /* Blauer Fließtext (Blocksatz mit automatischer Silbentrennung für responsive Screens) */
+        .text-blue {
+            color: #1A4B75; /* Ein edles, gut lesbares Blau */
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            text-align: justify;
+            letter-spacing: 0.02em;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+        }
+
+        /* Gelber Einschub (etwas kleiner als der Fließtext, normale Schreibweise) */
+        .highlight-yellow {
+            display: block;
+            color: #C29200; /* Ein sattes, dunkleres Gelb/Gold für gute Kontraste */
+            font-size: 0.9em; /* Skaliert den Text proportional etwas kleiner als den Fließtext */
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin: 18px 0;
+            padding-left: 12px;
+            border-left: 3px solid #C29200; /* Stilvolle optische Trennung */
+            text-align: left; /* Zitate/Einschübe wirken linksbündig oft harmonischer */
+        }
+
+        /* Moderner Footer-Bereich für Kreuz, Bild und die nachfolgenden Texte */
+        .footer-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Richtet Elemente untereinander aus */
+            align-items: center;
+            margin-top: 10px; /* Reduzierter Abstand nach oben für einen bündigeren Anschluss zum Text */
+        }
+
+        .footer-center {
+            width: 140px; /* Behält die ursprüngliche proportionale Breite bei */
+        }
+
+        /* Dynamisch skalierende Bild-Klasse (gilt jetzt für das externe SVG) */
+        .siegel-kreuz-gross {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Styling für das Bild nach dem Kreuz */
+        .promenade-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 25px; /* Abstand zum Kreuz darüber */
+            border-radius: 4px;
+        }
+
+        .text-purple {
+            color: #2F4F4F;
+            font-size: clamp(17px, 5vw, 21px);
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+            text-align: center;
+            width: 100%;
+            margin: 20px 0 5px 0; /* Weniger Abstand nach unten zum roten Text */
+        }
+
+        /* Roter Absatz in gleicher Größe, aber zentriert/linksbündig für den Gedichtcharakter */
+        .text-red-caps {
+            color: #A42A04; /* Das warme Rot */
+            font-size: clamp(16px, 4.5vw, 19px); /* Exakt dieselbe Größe wie .text-purple */
+            font-weight: 500;
+            line-height: 1.5;
+            text-align: center; /* Zentriert wirkt bei kurzen Gebets-/Gedichtzeilen oft edler */
+            letter-spacing: 0.05em; /* Etwas mehr Zeichenabstand für schönere Kapitälchen */
+            margin: 10px 0; /* Harmonischer Abstand */
+            width: 100%;
+            text-transform: uppercase; /* Erzwingt Kapitälchen / Großbuchstaben */
+        }
+
+        /* Bereich für den schmalen Button/Link und das nachfolgende Siegel */
+        .share-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column; /* Richtet Button und Siegel untereinander aus */
+            align-items: center;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .share-btn {
+            background: transparent;
+            border: 1px solid #7A5C2E;
+            color: #7A5C2E;
+            padding: 6px 14px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-transform: uppercase; /* Button bleibt zur optischen Abhebung in Kapitälchen */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            text-decoration: none; /* Verhindert Unterstreichung beim Link */
+            margin-bottom: 25px; /* Abstand nach unten zum neuen Siegel-Bild */
+        }
+
+        .share-btn:active {
+            background: #7A5C2E;
+            color: #fdfbf7;
+        }
+
+        /* Styling für das neue Siegel nach dem Button */
+        .siegel-img {
+            width: 100%;
+            max-width: 120px; /* Angemessene Größe für ein Siegel-Bild */
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+        <div class="container">
+            <h1 class="title">Seebrücke</h1>
+
+            <div class="content-blocks">
+                <div class="text-blue">
+                    <span class="initiale">S</span>eebrücken führen zum Horizont – wo sich Himmel und Erde berühren.
+                    <span class="highlight-yellow">
+                        Da berühren sich Himmel und Erde,<br>dass Frieden werde unter uns, …
+                    </span>
+                    Auf dem Weg zum Horizont spiegelt sich die Farbe des Himmels im Meer – und es rauscht die Frage: Wo spiegelt sich das Himmelreich in deinem Leben? Wo hat deine Welt die Farbe der Güte und Freundlichkeit…?<br><br>
+                    Seebrücken sind Verheißungen, dass Himmel und Erde sich auch bei uns berühren. Bis dahin und zwischendrin: „Lass leuchten das Himmlische in deinem Leben.“
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <div class="footer-center">
+                    <img src="thesenkreuz.svg" alt="Thesenkreuz" class="siegel-kreuz-gross">
+                </div>
+
+                <img src="seebrueckebild.jpg" alt="Seebrücke Bild" class="promenade-img">
+
+                <div class="text-purple">
+                    Im Vater Unser heißt es: 
+                </div>
+                <div class="text-red-caps">
+                    Wie im Himmel – So auf Erden!
+                </div>
+                <div class="text-purple">
+                    Wo berühren sich für dich<br>
+                    Himmel und Erde?
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="share-container">
+        <a href="index.html" class="share-btn">Zurück</a>
+        <img src="siegel.png" alt="Siegel" class="siegel-img">
+    </div>
+
+</body>
+</html>
