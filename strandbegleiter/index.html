@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strand·Begleiter</title>
-    
+    <title>Geistlicher Strand·Begleiter</title>
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+   
     <style>
         :root {
             --blue: #2F5496; 
@@ -19,10 +23,12 @@
             padding: 0;
         }
 
+        /* 1. Globaler Standard für die gesamte Seite (Fließtext) */
         body {
             background-color: var(--bg); 
             color: var(--dark);
-            letter-spacing: 0.05em;
+            font-family: 'Times New Roman', Times, serif; /* Fließtext standardmäßig antik/edel */
+            letter-spacing: 0.02em;
             display: flex;
             justify-content: center;
             min-height: 100vh;
@@ -30,6 +36,18 @@
             user-select: none;
             -webkit-user-select: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        /* 2. Gezielte Zuweisung für alle Überschriften und All-Caps-Elemente */
+        h1,
+        .cover p,
+        .title, 
+        .text-red-caps, 
+        .text-red-allcaps, 
+        .share-btn,
+        nav a { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em; /* Cinzel wirkt mit etwas mehr Abstand noch edler */
         }
 
         .container {
@@ -99,7 +117,6 @@
             padding: 14px 20px;
             font-size: 16px;
             font-weight: 700;
-            letter-spacing: 0.15em;
             text-transform: uppercase;
             border-radius: 4px;
             transition: background 0.2s;
