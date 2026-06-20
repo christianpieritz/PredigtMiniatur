@@ -126,6 +126,66 @@
             padding: 12px 20px;
             font-size: 15px;
         }
+        
+/* APP BUTTON */
+.install-inline {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: var(--gold);
+    font: inherit;
+    cursor: pointer;
+}
+.install-inline.visible {
+    display: inline;
+}
+
+
+.ios-hint {
+    position: fixed;
+    inset: 0;
+    background: rgba(47, 79, 79, 0.45);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 1000;
+}
+.ios-hint[hidden] {
+    display: none;
+}
+.ios-hint-box {
+    background: var(--bg);
+    color: var(--dark);
+    width: 100%;
+    max-width: 430px;
+    padding: 24px 22px 28px;
+    border-radius: 18px 18px 0 0;
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 1.65;
+    font-family: 'Times New Roman', Times, serif;
+}
+.ios-hint-box strong {
+    color: var(--gold);
+}
+.ios-hint-box button {
+    margin-top: 16px;
+    background: var(--blue);
+    color: var(--bg);
+    border: none;
+    padding: 11px 26px;
+    border-radius: 999px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* APP BUTTON */
+
 
 /* Neu hinzufügen: */
 .nav-item.handgepaeck {
@@ -162,7 +222,7 @@
         </div>
         
         <p class="intro">
-            Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. Nimm dir einen Moment für dich.
+            Wenn Du in den Kaiserbädern unterwegs bist, klicke auf den jeweiligen Ort. Nimm dir einen Moment für dich. <button id="installBtn" class="install-inline" type="button" hidden>(Hier zum Homescreen hinzufügen.)</button>
         </p>
 
         <nav class="nav-grid">
@@ -182,6 +242,69 @@
             <img src="siegel.png" alt="Siegel">
         </footer>
     </div>
+
+
+    <div id="iosHint" class="ios-hint" hidden>
+        <div class="ios-hint-box">
+            <p>
+                Tippe auf <strong>Teilen</strong>
+                und wähle 
+                <strong>„Zum Home-Bildschirm“</strong>.
+            </p>
+            <button id="iosHintClose" type="button">Okay</button>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        const installBtn = document.getElementById('installBtn');
+        const iosHint = document.getElementById('iosHint');
+        const iosHintClose = document.getElementById('iosHintClose');
+
+        const isStandalone =
+            window.matchMedia('(display-mode: standalone)').matches ||
+            window.navigator.standalone === true;
+
+        if (isStandalone) return;
+
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+        let deferredPrompt = null;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.hidden = false;
+            installBtn.classList.add('visible');
+        });
+
+        if (isIOS) {
+            installBtn.hidden = false;
+            installBtn.classList.add('visible');
+        }
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                await deferredPrompt.userChoice;
+                deferredPrompt = null;
+                installBtn.hidden = true;
+            } else if (isIOS) {
+                iosHint.hidden = false;
+            }
+        });
+
+        iosHintClose?.addEventListener('click', () => {
+            iosHint.hidden = true;
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.hidden = true;
+        });
+    })();
+    </script>
     <script src="register.js"></script>
+
+
+
 </body>
 </html>
