@@ -2,7 +2,7 @@
 //
 // Versionsnummer erhöhen (v1 -> v2 -> v3 ...), sobald sich Inhalte/Bilder
 // ändern. Nur so merkt der Browser, dass er den Cache erneuern muss.
-const CACHE_NAME = "strandbegleiter-v1";
+const CACHE_NAME = "strandbegleiter-v2";
 
 // Alle Dateien, die für die Offline-Nutzung vorab gespeichert werden sollen.
 const PRECACHE_URLS = [
@@ -18,7 +18,10 @@ const PRECACHE_URLS = [
   "./strand.html",
   "./strandhafer.html",
   "./strandkorb.html",
+   "./ferientheologie.html",
+      "./pfeife.html",
 
+  "./toback.jpg",
   "./bernsteinbild.jpg",
   "./Cover.jpg",
   "./dreikirchen.jpg",
@@ -29,7 +32,8 @@ const PRECACHE_URLS = [
   "./strandhaferbild.jpg",
   "./strandkorbbild.jpg",
   "./teaser.jpg",
-  "./wasser.jpg",
+  "./zelt.jpg",
+    "./wasser.jpg",
   "./dreikirchen.png",
   "./siegel.png",
   "./thesenkreuz.svg",
