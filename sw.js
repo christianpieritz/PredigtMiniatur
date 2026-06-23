@@ -46,53 +46,28 @@ const PRECACHE_URLS = [
 ];
 
 // --- INSTALL: Alle Dateien einmalig in den Cache laden ---
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      // addAll bricht ab, wenn EINE Datei fehlt/falsch benannt ist.
-      // Daher einzeln laden, damit ein Tippfehler nicht alles blockiert.
-      return Promise.all(
-        PRECACHE_URLS.map((url) =>
-          cache.add(url).catch((err) => {
-            console.warn("Konnte nicht gecacht werden:", url, err);
-          })
-        )
-      );
-    })
-  );
-  self.skipWaiting(); // neue Version sofort aktivieren
-});
-
-// --- ACTIVATE: Alte Cache-Versionen aufräumen ---
-self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => caches.delete(key))
-      )
-    )
-  );
-  self.clients.claim();
-});
-
 // --- FETCH: Cache-First, mit Netzwerk-Fallback ---
 self.addEventListener("fetch", (event) => {
-  // Nur GET-Anfragen behandeln (z. B. keine Formular-POSTs)
+  // Nur GET-Anfragen behandeln
   if (event.request.method !== "GET") return;
+
+  // WICHTIG: Nur http und https Anfragen verarbeiten (ignoriert chrome-extension:// etc.)
+  const url = new URL(event.request.url);
+  if (!url.protocol.startsWith('http')) return;
 
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
-        return cachedResponse; // aus dem Cache, funktioniert offline
+        return cachedResponse; // Aus dem Cache (funktioniert offline)
       }
 
       // Nicht im Cache -> aus dem Netz laden und für später mit-cachen
       return fetch(event.request)
         .then((networkResponse) => {
-          // Nur gültige Antworten cachen (keine Fehlerseiten o.Ä.)
-          if (networkResponse && networkResponse.status === 200) {
+          // Nur erfolgreiche Standard-Antworten (Status 200, Typ 'basic') cachen.
+          // 'basic' bedeutet: Ressourcen kommen von deiner eigenen Domain.
+          // 'cors' erlaubt auch Google Fonts, falls sie korrekt übertragen wurden.
+          if (networkResponse && networkResponse.status === 200 && (networkResponse.type === 'basic' || networkResponse.type === 'cors')) {
             const responseClone = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseClone);
@@ -101,8 +76,7 @@ self.addEventListener("fetch", (event) => {
           return networkResponse;
         })
         .catch(() => {
-          // Kein Netz und nicht im Cache -> bei HTML-Seiten
-          // notfalls die Startseite anzeigen
+          // Kein Netz und nicht im Cache -> Fallback bei Seitennavigation
           if (event.request.mode === "navigate") {
             return caches.match("./index.html");
           }
