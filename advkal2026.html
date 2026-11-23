@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebendiger Adventskalender</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2F5496">
+    <!-- iOS-spezifisch -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="StrandBegleiter">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-180.png">
+    <link rel="icon" href="icon-192.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="51b90591-9e71-46f5-83ed-73d4d87147ba"></script>
+
+    <style>
+        :root {
+            --gold: #7A5C2E;
+            --bg: #fdfbf7;
+            --dark: #2F4F4F;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--dark);
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 0.02em;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 15px;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .container {
+            width: 100%;
+            max-width: 430px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            font-size: clamp(22px, 7vw, 30px);
+            font-weight: 700;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .text {
+            width: 100%;
+            font-size: clamp(17px, 4.8vw, 19px);
+            line-height: 1.65;
+            text-align: left;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+        .text p {
+            white-space: pre-line;
+        }
+        .text p + p {
+            margin-top: 1em;
+        }
+        .toc a {
+            display: block;
+            color: var(--dark);
+            text-decoration: none;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(122, 92, 46, 0.25);
+        }
+        .toc a:active {
+            color: var(--gold);
+        }
+        .lied {
+            margin-top: 2.2em;
+            scroll-margin-top: 20px;
+        }
+        .lied h2 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.06em;
+            color: var(--gold);
+            font-size: 1.05em;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 0.7em;
+        }
+        .gruss {
+            margin-top: 3em;
+            text-align: center;
+        }
+        .gruss a {
+            color: var(--gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lebendiger<br>Adventskalender</h1>
+
+        <div class="text">
+
+            <nav class="toc">
+                <a href="#l1">1. Alle Jahre wieder</a>
+                <a href="#l2">2. Fröhliche Weihnacht überall</a>
+                <a href="#l3">3. Am Weihnachtsbaum die Lichter brennen</a>
+                <a href="#l4">4. Es ist für uns eine Zeit angekommen</a>
+                <a href="#l5">5. Süßer die Glocken nie klingen</a>
+                <a href="#l6">6. Bald nun ist Weihnachtszeit</a>
+                <a href="#l7">7. Leise rieselt der Schnee</a>
+                <a href="#l8">8. Sind die Lichter angezündet</a>
+                <a href="#l9">9. Schneeflöckchen, Weißröckchen</a>
+                <a href="#l10">10. O Tannenbaum</a>
+                <a href="#l11">11. Es ist ein Ros' entsprungen</a>
+                <a href="#l12">12. Ich steh' an deiner Krippe hier</a>
+                <a href="#l13">13. Still, still, still</a>
+                <a href="#l14">14. Freu' dich, Erd' und Sternenzelt</a>
+                <a href="#l15">15. Macht hoch die Tür</a>
+                <a href="#l16">16. Susani</a>
+                <a href="#l17">17. Maria durch ein' Dornwald ging</a>
+                <a href="#l18">18. Ihr Kinderlein kommet</a>
+                <a href="#l19">19. Lasst uns froh und munter sein</a>
+                <a href="#l20">20. Tochter Zion</a>
+                <a href="#l21">21. Vom Himmel hoch, da komm' ich her</a>
+                <a href="#l22">22. So viel Heimlichkeit in der Weihnachtszeit!</a>
+                <a href="#l23">23. O es riecht gut, o es riecht fein</a>
+                <a href="#l24">24. Kling Glöckchen</a>
+                <a href="#l25">25. Es kommt ein Schiff geladen</a>
+                <a href="#l26">26. Kommet, ihr Hirten</a>
+                <a href="#l27">27. Wie soll ich dich empfangen</a>
+                <a href="#l28">28. Morgen kommt der Weihnachtsmann</a>
+                <a href="#l29">29. Morgen, Kinder, wird's was geben</a>
+                <a href="#l30">30. Herbei o ihr Gläubigen</a>
+                <a href="#l31">31. Wir sagen euch an…</a>
+                <a href="#l32">32. Weihnachtsbäckerei</a>
+                <a href="#l33">33. Guten Abend, schön Abend</a>
+                <a href="#l34">34. Vorfreude, Schönste Freude</a>
+                <a href="#l35">35. Tausende Sterne sind ein Dom</a>
+                <a href="#l36">36. Hört der Engel helle Lieder</a>
+                <a href="#l37">37. Tragt in die Welt nun ein Licht</a>
+                <a href="#l38">38. Lobt Gott, ihr Christen alle gleich</a>
+                <a href="#l39">39. Stille Nacht! Heilige Nacht!</a>
+                <a href="#l40">40. O du fröhliche, O du selige</a>
+            </nav>
+
+            <section class="lied" id="l1">
+                <h2>1. Alle Jahre wieder</h2>
+                <p>Alle Jahre wieder / kommt das Christuskind / auf die Erde nieder, / wo wir Menschen sind.</p>
+                <p>Kehrt mit seinem Segen / ein in jedes Haus, / geht auf allen Wegen / mit uns ein und aus.</p>
+                <p>Ist auch mir zur Seite / still und unerkannt, / daß es treu mich leite / an der lieben Hand.</p>
+                <p>Sagt den Menschen allen, dass ein Vater ist, dem sie wohl gefallen, der sie nicht vergisst</p>
+            </section>
+
+            <section class="lied" id="l2">
+                <h2>2. Fröhliche Weihnacht überall</h2>
+                <p>"Fröhliche Weihnacht überall!" / tönet durch die Lüfte froher Schall. / Weihnachtston, Weihnachtsbaum, /
+Weihnachtsduft in jedem Raum! / "Fröhliche Weih-nacht überall!" / tönet durch die Lüfte froher Schall.</p>
+                <p>Darum alle / stimmet in den Jubelton, / denn es kommt das Licht der Welt / von des Vaters Thron. / "Fröhliche Weihnacht überall!“...</p>
+                <p>Licht auf dunklem Wege, / unser Licht bist du; / denn du führst, die dir vertrau’n, / ein zu sel’ger Ruh’. / "Fröhliche Weihnacht überall!“...</p>
+                <p>Was wir ander’n taten, / sei getan für dich, / daß bekennen jeder muß, / Christkind kam für mich. / "Fröhliche Weihnacht überall!“...</p>
+            </section>
+
+            <section class="lied" id="l3">
+                <h2>3. Am Weihnachtsbaum die Lichter brennen</h2>
+                <p>Am Weihnachtsbaum die Lichter brennen, wie glänzt er festlich, lieb und mild, als spräch' er: "Wollt in mir erkennen getreuer Hoffnung stilles Bild!"</p>
+                <p>Die Kinder stehn mit hellen Blicken, das Auge lacht, es lacht das Herz, o fröhlich seliges Entzücken! Die Alten schauen himmelwärts.</p>
+                <p>Zwei Engel sind hereingetreten, kein Auge hat sie kommen seh'n, sie gehn zum Weihnachtstisch und beten, und wenden wieder sich und geh'n.</p>
+                <p>"Gesegnet seid, ihr alten Leute, gesegnet sei, du kleine Schar! Wir bringen Gottes Segen heute dem braunen wie dem weißen Haar.</p>
+                <p>Zu guten Menschen, die sich lieben, schickt uns der Herr als Boten aus, und seid ihr treu und fromm geblieben, wir treten wieder in dies Haus."</p>
+                <p>Kein Ohr hat ihren Spruch vernommen, unsichtbar jedes Menschen Blick sind sie gegangen wie gekommen, doch Gottes Segen blieb zurück.</p>
+            </section>
+
+            <section class="lied" id="l4">
+                <h2>4. Es ist für uns eine Zeit angekommen</h2>
+                <p>|: Es ist für uns eine Zeit angekommen, / die bringt uns eine große Freud'! :| / Über's schneebeglänzte Feld /
+wandern wir, wandern wir / durch die weite, weiße Welt.</p>
+                <p>|: Es schlafen Bächlein und See unter'm Eise, / es träumt der Wald einen tiefen Traum. :| / Durch den Schnee, der leise fällt, / wandern wir, wandern wir / durch die weite, weiße Welt.</p>
+                <p>|: Vom hohen Himmel ein leuchtendes Schweigen /
+erfüllt die Herzen mit Seligkeit. :| Unter'm stern-beglänzten Zelt / wandern wir, wandern wir / durch die weite, weiße Welt.</p>
+            </section>
+
+            <section class="lied" id="l5">
+                <h2>5. Süßer die Glocken nie klingen</h2>
+                <p>Süßer die Glocken nie klingen / als zu der Weihnachtszeit: / S'ist als ob Engelein singen / wieder von Frieden und Freud'. |: Wie sie gesungen in seliger Nacht. :| Glocken mit heiligem Klang, / klinget die Erde entlang!</p>
+                <p>Oh, wenn die Glocken erklingen, / schnell sie das Christkindlein hört; / tut sich vom Himmel dann schwingen / eilig hernieder zur Erd'.|: Segnet den Vater, die Mutter, das Kind. :| Glocken mit heiligem Klang, / klinget die Erde entlang!</p>
+                <p>Klinget mit lieblichem Schalle / über die Meere noch weit, / daß sich erfreuen doch alle / seliger Weihnachtszeit. / |: Alle aufjauchzen mit herrlichem Sang. :| Glocken mit heiligem Klang, / klinget die Erde entlang!</p>
+            </section>
+
+            <section class="lied" id="l6">
+                <h2>6. Bald nun ist Weihnachtszeit</h2>
+                <p>Bald nun ist Weihnachtszeit, fröhliche Zeit. / Nun ist der Weihnachtsmann gar nicht mehr weit, / Nun ist der Weihnachtsmann gar nicht mehr weit.</p>
+                <p>Horch nur der Alte klopft draußen ans Tor. / Mit seinem Schimmel so steht er davor, / Mit seinem Schimmel so steht er davor.</p>
+                <p>Leg ich dem Schimmelchen Heu vor das Haus, / Packt gleich Knecht Ruprecht den großen Sack aus, / Packt gleich Knecht Ruprecht den großen Sack aus.</p>
+                <p>Pfeffernuss, Äpfelchen, Mandeln, Korinth, / Alles das schenkt er dem artigen Kind. / Alles das schenkt er dem artigen Kind.</p>
+            </section>
+
+            <section class="lied" id="l7">
+                <h2>7. Leise rieselt der Schnee</h2>
+                <p>Leise rieselt der Schnee, / still und starr ruht der See
+weihnachtlich glänzet der Wald: Freue dich, Christkind kommt bald!</p>
+                <p>In den Herzen ist's warm, / still schweigt Kummer und Harm, / Sorge des Lebens verhallt:  Freue dich, Christkind kommt bald!</p>
+                <p>Bald ist heilige Nacht, / Chor der Engel erwacht, /
+hört nur, wie lieblich es schallt: Freue dich, Christkind kommt bald!</p>
+            </section>
+
+            <section class="lied" id="l8">
+                <h2>8. Sind die Lichter angezündet</h2>
+                <p>Sind die Lichter angezündet / Freude zieht in jeden Raum  / Weihnachtsfreude wird verkündet  / Unter jedem Lichterbaum / Leuchte Licht mit hellem Schein / Überall, überall soll Freude sein.</p>
+                <p>Süße Dinge, schöne Gaben  / Gehen nun von Hand zu Hand / Jedes Kind soll Freude haben / Jedes Kind in jedem Land / Leuchte Licht mit hellem Schein / Überall, überall soll Freude sein.</p>
+                <p>Sind die Lichter angezündet / Rings ist jeder Raum erhellt / Weihnachtsfriede wird verkündet / Zieht hinaus in alle Welt / Leuchte Licht mit hellem Schein / Überall, überall soll Friede sein.</p>
+            </section>
+
+            <section class="lied" id="l9">
+                <h2>9. Schneeflöckchen, Weißröckchen</h2>
+                <p>Schneeflöckchen, Weißröckchen, / wann kommst du geschneit? / Du wohnst in den Wolken, / dein Weg ist so weit.</p>
+                <p>Komm setz dich ans Fenster, / du lieblicher Stern, malst Blumen und Blätter, / wir haben dich gern.</p>
+                <p>Schneeflöckchen, du deckst uns / die Blümelein zu, dann schlafen sie sicher / in himmlischer Ruh’.</p>
+                <p>Schneeflöckchen, Weißröckchen, / komm zu uns ins Tal. / Dann bau’n wir den Schneemann / und werfen den Ball.</p>
+            </section>
+
+            <section class="lied" id="l10">
+                <h2>10. O Tannenbaum</h2>
+                <p>O Tannenbaum, o Tannenbaum, / wie treu sind deine Blätter! / Du grünst nicht nur zur Sommerzeit, / nein, auch im Winter, wenn es schneit. / O Tannenbaum, o Tannenbaum, / wie treu sind deine Blätter!</p>
+                <p>O Tannenbaum, o Tannenbaum, / du kannst mir sehr gefallen! / Wie oft hat nicht zur Weihnachtszeit / ein Baum von dir mich hoch erfreut! / O Tannenbaum, o Tannenbaum, / du kannst mir sehr gefallen!</p>
+                <p>O Tannenbaum, o Tannenbaum, / dein Kleid will mich was lehren: / Die Hoffnung und Beständigkeit / gibt Trost und Kraft zu jeder Zeit, / o Tannenbaum, o Tannenbaum, / dein Kleid will mich was lehren.</p>
+            </section>
+
+            <section class="lied" id="l11">
+                <h2>11. Es ist ein Ros' entsprungen</h2>
+                <p>Es ist ein Ros' entsprungen / aus einer Wurzel zart, / wie uns die Alten sungen, / von Jesse kam die Art / und hat ein Blümlein 'bracht / mitten im kalten Winter, / wohl zu der halben Nacht. /</p>
+                <p>Das Blümlein, das ich meine, / davon Jesaja sagt, / hat uns gebracht alleine / Marie, die reine Magd; / aus Gottes ew’gem Rat / hat sie ein Kind geboren / wohl zu der halben Nacht.</p>
+                <p>Das Blümelein so kleine, / das duftet uns so süß; / mit seinem hellen Scheine / vertreibt's die Finsternis. / Wahr' Mensch und wahrer Gott, / hilft uns aus allem Leide, / rettet von Sünd und Tod.</p>
+            </section>
+
+            <section class="lied" id="l12">
+                <h2>12. Ich steh' an deiner Krippe hier</h2>
+                <p>Ich steh' an deiner Krippe hier, / o Jesu, du mein Leben; / ich komme, bring' und schenke dir, / was du mir hast gegeben. / Nimm hin, es ist mein Geist und Sinn, / Herz, Seel' und Mut, nimm alles hin / und laß dir's wohl gefallen.</p>
+                <p>Da ich noch nicht geboren war, / da bist du mir geboren / und hast dich mir zu eigen gar, / eh’ ich dich kannt’, erkoren. / Eh’ ich durch deine Hand gemacht, / da hast du schon bei dir bedacht, / wie du mein wolltest werden.</p>
+                <p>Ich lag in tiefer Todesnacht, / du warest meine Sonne,
+die Sonne, die mir zugebracht / Licht, Leben, Freud’ und Wonne. / O Sonne, die das werte Licht / des Glaubens in mir zugericht’, / wie schön sind deine Strahlen.</p>
+                <p>Ich sehe dich mit Freuden an / und kann mich nicht satt sehen; / und weil ich nun nichts weiter kann, / bleib’ ich anbetend stehen. / O daß mein Sinn ein Abgrund wär’ / und meine Seel’ ein weites Meer, / daß ich dich möchte fassen.</p>
+            </section>
+
+            <section class="lied" id="l13">
+                <h2>13. Still, still, still</h2>
+                <p>Still, still, still, / weil's Kindlein schlafen will! / Maria tut es niedersingen, / ihre keusche Brust darbringen. / Still, still, still, / weil's Kindlein schlafen will!</p>
+                <p>Schlaf, schlaf, schlaf, / mein liebes Kindlein, schlaf! / Die Engel tun schön musizieren, / vor dem Kindlein jubilieren. / Schlaf, schlaf, schlaf, / mein liebes Kindlein, schlaf!</p>
+                <p>Groß, groß, groß, / die Lieb' ist übergroß. / Gott hat den Himmelsthron verlassen / und muß reisen auf den Straßen. / Groß, groß, groß, / die Lieb' ist übergroß.</p>
+            </section>
+
+            <section class="lied" id="l14">
+                <h2>14. Freu' dich, Erd' und Sternenzelt</h2>
+                <p>Freu' dich, Erd' und Sternenzelt, / Alleluja! / Gottes Sohn kommt in die Welt, / Alleluja! / Uns zum Heil erkoren, ward er heut' geboren, / heute uns geboren!</p>
+                <p>Seht, der schönsten Rose Flor, Alleluja, / sprießt aus Jesses Zweig hervor! / Alleluja! / Uns zum Heil erkoren, ward er heut’ geboren, / heute uns geboren.</p>
+                <p>Er, das menschgewordne Wort, Halleluja! Jesus Christus, unser Hort. Halleluja! Uns zum Heil erkoren,
+ward er heut geboren, heute uns geboren.</p>
+            </section>
+
+            <section class="lied" id="l15">
+                <h2>15. Macht hoch die Tür</h2>
+                <p>Macht hoch die Tür, die Tor macht weit; es kommt der Herr der Herrlichkeit, ein König aller Königreich, ein Heiland aller Welt zugleich, der Heil und Leben mit sich bringt; derhalben jauchzt, mit Freuden singt: Gelobet sei mein Gott, mein Schöpfer reich von Rat.</p>
+                <p>Er ist gerecht, ein Helfer wert; Sanftmütigkeit ist sein Gefährt, sein Königskron ist Heiligkeit, sein Zepter ist Barmherzigkeit; all unsre Not zum End er bringt, derhalben jauchzt, mit Freuden singt: Gelobet sei mein Gott, mein Heiland groß von Tat.</p>
+                <p>O wohl dem Land, o wohl der Stadt, so diesen König bei sich hat. Wohl allen Herzen insgemein, da dieser König ziehet ein. Er ist die rechte Freudensonn, bringt mit sich lauter Freud und Wonn. Gelobet sei mein Gott,
+mein Tröster früh und spat.</p>
+                <p>Komm, o mein Heiland Jesu Christ, meins Herzens Tür dir offen ist. Ach zieh mit deiner Gnade ein; dein Freundlichkeit auch uns erschein. Dein Heilger Geist uns führ und leit den Weg zur ewgen Seligkeit. Dem Namen dein, o Herr, sei ewig Preis und Ehr.</p>
+            </section>
+
+            <section class="lied" id="l16">
+                <h2>16. Susani</h2>
+                <p>Vom Himmel hoch, o Englein, kommt! / Eia, eia, susani, susani, susani. / Kommt, singt und klingt, / kommt, pfeift und trombt! / Alleluja, alleluja! / Von Jesus singt und Maria.</p>
+                <p>Kommt ohne Instrumenten nit, / Eia, eia, susani, susani, susani   / bringt Lauten, Harfen, Geigen mit! Alleluja, alleluja! / Von Jesus singt und Maria.</p>
+                <p>Laßt hören euer Stimmen viel  / Eia, eia, susani, susani, susani. /  mit Orgel und mit Saitenspiel! Alleluja, alleluja! / Von Jesus singt und Maria.
+Singt Fried' den Menschen weit und breit, / Eia, eia, susani, susani, susani. / Gott Preis und Ehr' in Ewigkeit! / Alleluja, alleluja! / Von Jesus singt und Maria.</p>
+            </section>
+
+            <section class="lied" id="l17">
+                <h2>17. Maria durch ein' Dornwald ging</h2>
+                <p>Maria durch ein' Dornwald ging. Kyrieleison! / Maria durch ein' Dornwald ging, der hatte in sieben Jahr'n kein Laub getragen! / Jesus und Maria.</p>
+                <p>Was trug Maria unterm Herzen? Kyrieleison! / Ein kleines Kindlein ohne Schmerzen, das trug Maria unter ihrem Herzen. / Jesus und Maria.</p>
+                <p>Da haben die Dornen Rosen getrag’n; Kyrieleison! / Als das Kindlein durch den Wald getragen, da haben die Dornen Rosen getragen! / Jesus und Maria.</p>
+                <p>Wer hat erlöst die Welt allein? Kyrieleison. / Das hat getan das Christkindlein,  das hat erlöst die Welt allein! Jesus und Maria.</p>
+            </section>
+
+            <section class="lied" id="l18">
+                <h2>18. Ihr Kinderlein kommet</h2>
+                <p>Ihr Kinderlein kommet, o kommet doch all'! / Zur Krippe her kommet in Bethlehems Stall. / Und seht, was in dieser hochheiligen Nacht / der Vater im Himmel für Freude uns macht.</p>
+                <p>O seht in der Krippe, im nächtlichen Stall, / seht hier bei des Lichtleins hellglänzendem Strahl, / den lieblichen Knaben, das himmlische Kind, / viel schöner und holder, als Engelein sind.</p>
+                <p>Da liegt es – das Kindlein – auf Heu und auf Stroh; / Maria und Josef betrachten es froh; / die redlichen Hirten knie'n betend davor, / hoch oben schwebt jubelnd der Engelein Chor.</p>
+                <p>O beugt wie die Hirten anbetend die Knie, / erhebet die Hände und danket wie sie! / Stimmt freudig, ihr Kinder, wer wollt sich nicht freu'n, / stimmt freudig zum Jubel der Engel mit ein!</p>
+            </section>
+
+            <section class="lied" id="l19">
+                <h2>19. Lasst uns froh und munter sein</h2>
+                <p>Lasst uns froh und munter sein, und uns recht von Herzen freun! Lustig, lustig, traleralera! Bald ist Nikolaus Abend da, bald ist Nikolaus Abend da!</p>
+                <p>Dann stell ich den Teller auf, Nik'laus legt gewiß was drauf. Lustig, lustig, traleralera! Bald ist Nikolaus Abend da, bald ist Nikolaus Abend da!</p>
+                <p>Wenn ich schlaf, dann träume ich, jetzt bringt Nik'laus was für mich. Lustig, lustig, traleralera! Bald ist Nikolaus Abend da, bald ist Nikolaus Abend da!</p>
+                <p>Wenn ich aufgestanden bin, lauf ich schnell zu dem Teller hin. Lustig, lustig, traleralera! Bald ist Nikolaus Abend da, bald ist Nikolaus Abend da!</p>
+                <p>Nik'laus ist ein guter Mann, dem man nicht genug danken kann! Lustig, lustig, traleralera! Bald ist Nikolaus Abend da, bald ist Nikolaus Abend da!</p>
+            </section>
+
+            <section class="lied" id="l20">
+                <h2>20. Tochter Zion</h2>
+                <p>Tochter Zion, freue dich! / Jauchze laut, Jerusalem! / Sieh, dein König kommt zu dir! / Ja, er kommt, der Friedensfürst. / Tochter Zion, freue dich! / Jauchze laut, Jerusalem!</p>
+                <p>Hosianna, Davids Sohn, / sei gesegnet deinem Volk! / Gründe nun dein ew’ges Reich. / Hosianna in der Höh’.
+Hosianna, Davids Sohn, / sei gesegnet deinem Volk!</p>
+                <p>Hosianna, Davids Sohn, / sei gegrüßet, König mild! / Ewig steht dein Friedensthron, / du, des ew’gen Vaters Kind. / Hosianna, Davids Sohn, / sei gegrüßet, König mild!</p>
+            </section>
+
+            <section class="lied" id="l21">
+                <h2>21. Vom Himmel hoch, da komm' ich her</h2>
+                <p>Vom Himmel hoch, da komm' ich her, / ich bring' euch gute neue Mär, / der guten Mär bring' ich soviel, / davon ich sing'n und sagen will.</p>
+                <p>Euch ist ein Kindlein heut geborn / von einer Jungfrau auserkorn, / ein Kindelein so zart und fein, / das soll eur Freud und Wonne sein.</p>
+                <p>Es ist der Herr Christ, unser Gott, / der will euch führn aus aller Not, / er will eur Heiland selber sein, / von allen Sünden machen rein.</p>
+                <p>Er bringt euch alle Seligkeit, / die Gott der Vater hat bereit', / daß ihr mit uns im Himmelreich / sollt leben nun und ewiglich.</p>
+                <p>Davon ich allzeit fröhlich sei, / zu springen, singen immer frei / das rechte Susaninne schön, / mit Herzenslust den süßen Ton.</p>
+                <p>Lob, Ehr sei Gott im höchsten Thron, / der uns schenkt seinen eingen Sohn. / Des freuen sich der Engel Schar'
+/ und singen uns solch neues Jahr.</p>
+            </section>
+
+            <section class="lied" id="l22">
+                <h2>22. So viel Heimlichkeit in der Weihnachtszeit!</h2>
+                <p>So viel Heimlichkeit in der Weihnachtszeit! Meine Puppen sind verschwunden, hab nicht mal den Bär gefunden. So viel Heimlichkeit in der Weihnachtszeit!</p>
+                <p>So viel Heimlichkeit in der Weihnachtszeit! Hansels Eisenbahn ist weg, steht nicht mehr am alten Fleck. So viel Heimlichkeit in der Weihnachtszeit!
+So viel Heimlichkeit in der Weihnachtszeit! In der Küche riecht es lecker, grad so wie beim Zuckerbäcker. So viel Heimlichkeit in der Weihnachtszeit!</p>
+            </section>
+
+            <section class="lied" id="l23">
+                <h2>23. O es riecht gut, o es riecht fein</h2>
+                <p>O es riecht gut, o es riecht fein / Heut rühr'n wir Teig für Plätzchen ein./ In der Küche wird gebacken / Helft nur alle Mandeln knacken / O es riecht gut, o es riecht fein.</p>
+                <p>O es riecht gut, o es riecht fein. / Heut rühr'n wir Teig für Plätzchen ein. / Butter Zucker glattgerührt / Und die Bleche eingeschmiert. / O es riecht gut, o es riecht fein.</p>
+                <p>O es riecht gut, o es riecht fein. / Heut rühr'n wir Teig für Plätzchen ein. / Eier in den Topf geschlagen / Und die Milch dazu getragen. / O es riecht gut, o es riecht fein.</p>
+                <p>O es riecht gut, o es riecht fein. / Heut rühr'n wir Teig für Plätzchen ein. / Weißes Mehl das woll'n wir sieben / Aber nichts daneben stieben. / O es riecht gut, o es riecht fein.</p>
+                <p>Oh es riecht gut, o es riecht fein. / Die Plätzchen werden fertig sein / Weihnachtskringel braun und rund, / Eins zum kosten in den Mund. / O es riecht gut, o es riecht fein.</p>
+            </section>
+
+            <section class="lied" id="l24">
+                <h2>24. Kling Glöckchen</h2>
+                <p>Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!  Lasst mich ein, ihr Kinder, ist so kalt der Winter,  öffnet mir die Türen, lasst mich nicht erfrieren! Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!</p>
+                <p>Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!  Mädchen, hört, und Bübchen, macht mir auf das Stübchen, bring euch viele Gaben, sollt euch dran laben.  Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!</p>
+                <p>Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling! Hell erglühn die Kerzen, öffnet mir die Herzen!  Will drin wohnen fröhlich, frommes Kind, wie selig. Kling, Glöckchen, klingelingeling, kling, Glöckchen, kling!</p>
+            </section>
+
+            <section class="lied" id="l25">
+                <h2>25. Es kommt ein Schiff geladen</h2>
+                <p>Es kommt ein Schiff, geladen bis an sein' höchsten Bord,  trägt Gottes Sohn voll Gnaden,  des Vaters ewig's Wort.</p>
+                <p>Das Schiff geht still im Triebe, es trägt ein’ teure Last; das Segel ist die Liebe,  der Heilig’ Geist der Mast.</p>
+                <p>Der Anker haft' auf Erden, da ist das Schiff am Land. Das Wort tut Fleisch uns werden, der Sohn ist uns gesandt.</p>
+                <p>Zu Bethlehem geboren im Stall ein Kindelein, gibt sich für uns verloren; gelobet muß es sein.</p>
+            </section>
+
+            <section class="lied" id="l26">
+                <h2>26. Kommet, ihr Hirten</h2>
+                <p>Kommet, ihr Hirten, ihr Männer und Fraun, kommet, das liebliche Kindlein zu schaun, Christus, der Herr, ist heute geboren, den Gott zum Heiland euch hat erkoren. Fürchtet euch nicht.</p>
+                <p>Lasset uns sehen in Bethlehems Stall, was uns verheißen der himmlische Schall! Was wir dort finden, lasset uns künden, lasset uns preisen in frommen Weisen. Halleluja.</p>
+                <p>Wahrlich, die Engel verkündigen heut’ Bethlehems Hirtenvolk gar große Freud’. Nun soll es werden Friede auf Erden, den Menschen allen ein Wohlgefallen. Ehre sei Gott.</p>
+            </section>
+
+            <section class="lied" id="l27">
+                <h2>27. Wie soll ich dich empfangen</h2>
+                <p>Wie soll ich dich empfangen / Und wie begegn' ich dir? O aller Welt Verlangen, / O meiner Seelen Zier! O Jesu, Jesu, setze / Mir selbst die Fackel bei, Damit, was dich ergötze, Mir kund und wissend sei.</p>
+                <p>Dein Zion streut dir Palmen / Und grüne Zweige hin, / Und ich will dir in Psalmen / Ermuntern meinen Sinn. Mein Herze soll dir grünen / In stetem Lob und Preis / Und deinem Namen dienen, / So gut es kann und weiß.</p>
+                <p>Was hast du unterlassen / Zu meinem Trost und Freud? Als Leib und Seele saßen / In ihrem größten Leid, / Als mir das Reich genommen, / Da Fried und Freude lacht, / Da bist du, mein Heil, kommen / Und hast mich froh gemacht.</p>
+            </section>
+
+            <section class="lied" id="l28">
+                <h2>28. Morgen kommt der Weihnachtsmann</h2>
+                <p>Morgen kommt der Weihnachtsmann, kommt mit seinen Gaben: Trommel, Pfeifen und Gewehr, Fahn' und Säbel und noch mehr, ja ein ganzes Kriegesheer möcht' ich gerne haben!</p>
+                <p>Bring uns, lieber Weihnachtsmann, bring auch morgen, bringe: Musketier und Grenadier, Zottelbär und Panthertier, Roß und Esel, Schaf und Stier, lauter schöne Dinge!</p>
+                <p>Doch du weißt ja unsern Wunsch, Kennest unsere Herzen. Kinder, Vater und Mama, Auch sogar der Großpapa, Alle, alle sind wir da, Warten dein mit Schmerzen.</p>
+            </section>
+
+            <section class="lied" id="l29">
+                <h2>29. Morgen, Kinder, wird's was geben</h2>
+                <p>Morgen, Kinder, wird's was geben, morgen werden wir uns freun! Welch ein Jubel, welch ein Leben wird in unserm Hause sein! Einmal werden wir noch wach, heißa dann ist Weihnachtstag!</p>
+                <p>Wie wird dann die Stube glänzen von der großen Lichterzahl, schöner als bei frohen Tänzen ein geputzter Kronensaal. Wißt ihr noch vom vor'gen Jahr, wie's am Weihnachtsabend war?</p>
+                <p>Wißt ihr noch mein Räderpferdchen, Malchens nette Schäferin, Jettchens Küche mit dem Herdchen und dem blankgeputzten Zinn? Heinrichs bunten Harlekin
+mit der gelben Violin?</p>
+                <p>Wißt ihr noch den großen Wagen Und die schöne Jagd von Blei? Unsre Kleiderchen zum Tragen Und die viele Näscherei? Meinen fleißgen Sägemann Mit der Kugel unten dran?</p>
+                <p>Welch ein schöner Tag ist morgen, Viele Freuden hoffen wir! Unsre lieben Eltern sorgen Lange, lange schon dafür. O gewiß, wer sie nicht ehrt, Ist der ganzen Lust nicht wert!</p>
+            </section>
+
+            <section class="lied" id="l30">
+                <h2>30. Herbei o ihr Gläubigen</h2>
+                <p>Herbei, o ihr Gläub'gen, fröhlich triumphieret, o kommet, o kommet nach Bethlehem! Sehet das Kindlein, uns zum Heil geboren! O lasset uns anbeten, o lasset uns anbeten, o lasset uns anbeten den König!</p>
+                <p>Du König der Ehren, Herrscher der Heerscharen, verschmähst nicht zu ruhn in Marien Schoß, Gott, wahrer Gott von Ewigkeit geboren. O lasset uns anbeten, o lasset uns anbeten, o lasset uns anbeten den König!</p>
+                <p>Kommt, singet dem Herren, singt, ihr Engelchöre! Frohlocket, frohlocket, ihr Seligen: "Ehre sei Gott im Himmel und auf Erden!" O lasset uns anbeten, o lasset uns anbeten, o lasset uns anbeten den König!</p>
+            </section>
+
+            <section class="lied" id="l31">
+                <h2>31. Wir sagen euch an…</h2>
+                <p>Wir sagen euch an den lieben Advent. Sehet die erste Kerze brennt! Wir sagen euch an eine heilige Zeit, Machet dem Herrn den Weg bereit! |: Freut euch ihr Christen, freuet euch sehr!  Schon ist nahe der Herr.:|</p>
+                <p>Wir sagen euch an den lieben Advent. Sehet die zweite Kerze brennt!  So nehmet euch eins um das andere an, Wie euch der Herr an uns getan. |: Freut euch ihr Christen, freuet euch sehr!  Schon ist nahe der Herr.:|</p>
+                <p>Wir sagen euch an den lieben Advent. Sehet die dritte Kerze brennt!  Nun trag eurer Güte hellen Schein Weit in die dunkle Welt hinein.  |: Freut euch ihr Christen, freuet euch sehr!  Schon ist nahe der Herr.:|</p>
+                <p>Wir sagen euch an den lieben Advent. Sehet die vierte Kerze brennt. Gott selber wird kommen. Er zögert nicht. Auf, auf ihr Herzen und werdet licht!  |: Freut euch ihr Christen, freuet euch sehr!  Schon ist nahe der Herr.:|</p>
+            </section>
+
+            <section class="lied" id="l32">
+                <h2>32. Weihnachtsbäckerei</h2>
+                <p>In der Weihnachtsbäckerei / gibt es manche Leckerei. Zwischen Mehl und Milch / macht so mancher Knilch eine riesengroße Kleckerei. In der Weihnachts-bäckerei, in der Weihnachtsbäckerei.</p>
+                <p>Wo ist das Rezept geblieben  / von den Plätzchen, die wir lieben? Wer hat das Rezept verschleppt? Na, dann müssen wir es packen, einfach frei nach Schnauze backen. Schmeiß den Ofen an - und ran!  In der Weihnachtsbäckerei ...</p>
+                <p>Brauchen wir nicht Schokolade, Honig, Nüsse und Sukkade und ein bisschen Zimt? Das stimmt. Butter, Mehl und Milch verrühren, zwischendurch einmal probieren, und dann kommt das Ei - vorbei! In der Weihnachtsbäckerei ...</p>
+                <p>Bitte mal zur Seite treten, denn wir brauchen Platz zum Kneten. Sind die Finger rein? Du Schwein! Sind die Plätzchen, die wir stechen, erst mal auf den Ofenblechen, warten wir gespannt - verbrannt. In der Weihnachtsbäckerei …</p>
+            </section>
+
+            <section class="lied" id="l33">
+                <h2>33. Guten Abend, schön Abend</h2>
+                <p>Guten Abend, schön Abend / Es weihnachtet schon Guten Abend, schön Abend / Es weihnachtet schon Am Kranze die Lichter / Die leuchten so fein / Sie geben der Heimat / Einen hellichten Schein.
+Guten Abend, schön Abend / Es weihnachtet schon
+Guten Abend, schön Abend  / Es weihnachtet schon
+Der Schnee fällt in Flocken  / Und weiß glänzt der Wald / Nun freut euch, ihr Kinder  / Die Weihnacht kommt bald</p>
+                <p>Guten Abend, schön Abend  / Es weihnachtet schon
+Guten Abend, schön Abend  / Es weihnachtet schon
+Nun singt es und klingt es  / So lieblich und fein
+Wir singen die fröhliche  / Weihnachtszeit ein.</p>
+            </section>
+
+            <section class="lied" id="l34">
+                <h2>34. Vorfreude, Schönste Freude</h2>
+                <p>Vorfreude, schönste Freude, Freude im Advent. Tannengrün zum Kranz gewunden, rote Bänder dreingebunden, und das erste Lichtlein brennt. Erstes Leuchten im Advent, Freude im Advent.</p>
+                <p>Vorfreude, schönste Freude, Freude im Advent. Heimlichkeit im frühen Dämmern, basteln, stricken, rascheln, hämmern, und das zweite Lichtlein brennt. Heimlichkeiten im Advent, Freude im Advent.</p>
+                <p>Vorfreude, schönste Freude, Freude im Advent. Was tut Mutti, könnt ihr’s raten? Kuchen backen, Äpfel braten, und das dritte Lichtlein brennt. Süße Düfte im Advent, Freude im Advent.</p>
+                <p>Vorfreude, schönste Freude, Freude im Advent. Kinderstimmen leise, leise, üben manche frohe Weise,
+und das vierte Lichtlein brennt. Lieder klingen im Advent, Freude im Advent.</p>
+            </section>
+
+            <section class="lied" id="l35">
+                <h2>35. Tausende Sterne sind ein Dom</h2>
+                <p>Tausend Sterne sind ein Dom / In stille weltenweite Nacht / Ein Licht blüht auf im Kerzenschein / 
+Das uns umfängt und glücklich macht.</p>
+                <p>All dies Schweigen macht uns froh / Ein Leuchten durch die Herzen geht / Und silbern schwingt der hohe Dom / Vom Hauch der Weihnacht still umweht.</p>
+                <p>Alles Dunkel singt hinweg / Wir haben unser Licht entfacht / Es leuchtet uns zum neuen Jahr / In tiefer, sternverklärter Nacht.</p>
+            </section>
+
+            <section class="lied" id="l36">
+                <h2>36. Hört der Engel helle Lieder</h2>
+                <p>Hört, der Engel helle Lieder klingen das weite Feld entlang, und die Berge hallen wider von des Himmels Lobgesang: Gloria in excelsis Deo. Gloria in excelsis Deo.</p>
+                <p>Hirten, warum wird gesungen? Sagt mir doch eures Jubels Grund! Welch ein Sieg ward denn errungen, den uns die Chöre machen kund? Gloria in excelsis Deo. Gloria in excelsis Deo.</p>
+                <p>Sie verkünden uns mit Schalle, dass der Erlöser nun erschien, dankbar singen sie heut alle an diesem Fest und grüßen ihn. Gloria in excelsis Deo. Gloria in excelsis Deo.</p>
+            </section>
+
+            <section class="lied" id="l37">
+                <h2>37. Tragt in die Welt nun ein Licht</h2>
+                <p>Tragt in die Welt nun ein Licht / Sagt allen: "Fürchtet euch nicht" Gott hat euch lieb, groß und klein / Seht auf des Lichtes Schein.
+Tragt zu den Alten ein Licht / Sagt allen: "Fürchtet euch nicht" / Gott hat euch lieb, groß und klein / Seht auf des Lichtes Schein.</p>
+                <p>Tragt zu den Kranken ein Licht / Sagt allen: "Fürchtet euch nicht" / Gott hat euch lieb, groß und klein / Seht auf des Lichtes Schein.</p>
+                <p>Tragt zu den Kindern ein Licht / Sagt allen: "Fürchtet euch nicht" / Gott hat euch lieb, groß und klein / Seht auf des Lichtes Schein.</p>
+            </section>
+
+            <section class="lied" id="l38">
+                <h2>38. Lobt Gott, ihr Christen alle gleich</h2>
+                <p>Lobt Gott, ihr Christen alle gleich, in seinem höchsten Thron, der heut schließt auf sein Himmelreich / und schenkt uns seinen Sohn, und schenkt uns seinen Sohn.
+Er kommt aus seines Vaters Schoß / und wird ein Kindlein klein, er liegt dort elend, nackt und bloß / in einem Krippelein, / in einem Krippelein.</p>
+                <p>Er entäußert sich all seiner G'walt, wird niedrig und gering / und nimmt an eines Knechts Gestalt,/ der Schöpfer aller Ding, / der Schöpfer aller Ding.</p>
+                <p>Heut schließt er wieder auf die Tür / zum schönen Paradeis; / der Cherub steht nicht mehr dafür. / Gott sei Lob, Ehr und Preis, / Gott sei Lob, Ehr und Preis!</p>
+            </section>
+
+            <section class="lied" id="l39">
+                <h2>39. Stille Nacht! Heilige Nacht!</h2>
+                <p>Stille Nacht! Heilige Nacht! / Alles schläft, einsam wacht / nur das traute hoch heilige Paar. / "Holder Knabe im lockigen Haar, / schlaf in himmlischer Ruh', / schlaf in himmlischer Ruh’!"</p>
+                <p>Stille Nacht! Heilige Nacht! / Gottes Sohn, o wie lacht / lieb' aus deinem göttlichen Mund, da uns schlägt die rettende Stund': Jesus in deiner Geburt. / Jesus in deiner Geburt.</p>
+                <p>Stille Nacht, heilige Nacht, / Hirten erst kundgemacht / durch der Engel Halleluja / tönt es laut von Ferne und Nah: Jesus, der Retter ist da! / Jesus, der Retter ist da!</p>
+            </section>
+
+            <section class="lied" id="l40">
+                <h2>40. O du fröhliche, O du selige</h2>
+                <p>O du fröhliche, O du selige, / gnadenbringende Weihnachtszeit! / Welt ging verloren, Christ ward geboren: Freue, freue dich, O Christenheit!</p>
+                <p>O du fröhliche, O du selige, / gnadenbringende Weihnachtszeit! / Christ ist erschienen, uns zu versühnen: Freue, freue dich, O Christenheit!</p>
+                <p>O du fröhliche, O du selige, / gnadenbringende Weihnachtszeit! / Himmlische Heere jauchzen dir Ehre: Freue, freue dich, O Christenheit!</p>
+            </section>
+
+            <p class="gruss">Eine gesegnete Adventszeit wünschen Ihre Kirchengemeinden in den Kaiserbädern.
+<a href="https://kirche-auf-usedom.de">kirche-auf-usedom.de</a>
+<a href="tel:+493837822488">038378-22488</a></p>
+
+        </div>
+    </div>
+</body>
+</html>
